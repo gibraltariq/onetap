@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import FormField from './form_field';
 
 type Props = {};
 export default class ContactUs extends Component<Props> {
@@ -13,24 +14,18 @@ export default class ContactUs extends Component<Props> {
             Drop us your phone number and we'll be in touch. Don't worry, Onetap is free until you're ready to pay.
           </Text>
         </View>
-        <View style={styles.fields}>
-          <Text style={styles.ask}>An expert can text me at: </Text>
-          <TextInput style={styles.input} placeholder="Pizzaaa"/>
-        </View>
+        <FormField fieldDescription={'An expert can text me at'} placeholder="+1" keyboardType={'phone-pad'}/>
+        <FormField fieldDescription={'My name is'} placeholder="Boss McBosster"/>
       </View>
     );
   }
 }
 
 const grayTextColor = '#828282';
-const bodyFontSize = 1.9;
+const bodyStandardSize = 1.9;
 // 1.5 to deal with floating point precision.
-const bodyLineHeight = 1.5 * bodyFontSize;
+const bodyLineHeight = 1.5 * bodyStandardSize;
 const styles = StyleSheet.create({
-  ask: {
-    color: grayTextColor,
-    fontSize: hp(bodyFontSize),
-  },
   container: {
     backgroundColor: '#FAFAFA',
     flex: 1,
@@ -40,18 +35,10 @@ const styles = StyleSheet.create({
   },
   explanation: {
     color: grayTextColor,
-    fontSize: hp(bodyFontSize),
+    fontSize: hp(bodyStandardSize),
     fontStyle: 'italic',
     lineHeight: hp(bodyLineHeight),
-    marginTop: hp(bodyFontSize),
-  },
-  fields: {
-    marginVertical: hp(5),
-  },
-  input: {
-    borderWidth: 2,
-    fontSize: bodyFontSize,
-    padding: hp(1),
+    marginTop: hp(bodyStandardSize),
   },
   title: {
     color: '#4F4F4F',
