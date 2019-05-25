@@ -14,7 +14,6 @@ export default class Splash extends Component<Props> {
     );
   }
 }
-          //<Image source={require('../../assets/logo.png')} style={styles.logo}/>
 
 const styles = StyleSheet.create({
   container: {

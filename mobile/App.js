@@ -1,13 +1,13 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import Splash from './src/components/splash/splash';
+import ContactUs from './src/components/contact_us/contact_us';
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <Splash />
+      <ContactUs />
     );
   }
 }
