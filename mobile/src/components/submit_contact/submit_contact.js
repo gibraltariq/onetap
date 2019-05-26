@@ -5,7 +5,7 @@ import FormField from './form_field';
 import {grayTextColor, bodyStandardSize, bodyLineHeight} from '../common';
 
 type Props = {};
-export default class ContactUs extends Component<Props> {
+export default class SubmitContact extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
@@ -26,7 +26,9 @@ export default class ContactUs extends Component<Props> {
             placeholder='Salman Khan'/>
         </View>
         <KeyboardAvoidingView behavior='padding'>
-          <TouchableOpacity style={styles.actionButton}>
+          <TouchableOpacity 
+            style={styles.actionButton} 
+            onPress={() => this.props.navigation.navigate('Splash')}>
             <Text style={styles.actionButtonText}>SUBMIT</Text>
           </TouchableOpacity>
         </KeyboardAvoidingView>
