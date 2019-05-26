@@ -1,37 +1,61 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import FormField from './form_field';
+import {grayTextColor, bodyStandardSize, bodyLineHeight} from '../common';
 
 type Props = {};
 export default class ContactUs extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Where can we reach you?</Text>
-          <Text style={styles.explanation}>
-            Drop us your phone number and we'll be in touch. Don't worry, Onetap is free until you're ready to pay.
-          </Text>
+        <View style={styles.content}>
+          <View style={styles.header}>
+            <Text style={styles.title}>Where can we reach you?</Text>
+            <Text style={styles.explanation}>
+              Drop us your phone number and we'll be in touch. Don't worry, Onetap is free until you're ready to pay.
+            </Text>
+          </View>
+          <FormField 
+            fieldDescription={'An expert can text me at'} 
+            placeholder='+1' 
+            keyboardType={'phone-pad'}/>
+          <FormField 
+            autoCorrect={false}
+            fieldDescription={'My name is'} 
+            placeholder='Salman Khan'/>
         </View>
-        <FormField fieldDescription={'An expert can text me at'} placeholder="+1" keyboardType={'phone-pad'}/>
-        <FormField fieldDescription={'My name is'} placeholder="Boss McBosster"/>
+        <KeyboardAvoidingView behavior='padding'>
+          <TouchableOpacity style={styles.actionButton}>
+            <Text style={styles.actionButtonText}>SUBMIT</Text>
+          </TouchableOpacity>
+        </KeyboardAvoidingView>
       </View>
     );
   }
 }
 
-const grayTextColor = '#828282';
-const bodyStandardSize = 1.9;
-// 1.5 to deal with floating point precision.
-const bodyLineHeight = 1.5 * bodyStandardSize;
 const styles = StyleSheet.create({
+  actionButton: {
+    alignItems: 'center',
+    backgroundColor: '#F96866',
+    justifyContent: 'center',
+    padding: hp(2.5),
+  },
+  actionButtonText: {
+    color: '#FFFFFF',
+    fontSize: hp(2.5), 
+    letterSpacing: wp(1),
+  },
   container: {
-    backgroundColor: '#FAFAFA',
     flex: 1,
     justifyContent: 'flex-start',
-    paddingVertical: hp('10%'),
-    paddingHorizontal: wp('7%'),
+  },
+  content: {
+    backgroundColor: '#FAFAFA',
+    flex: 1,
+    paddingVertical: hp(7),
+    paddingHorizontal: wp(7),
   },
   explanation: {
     color: grayTextColor,
@@ -42,7 +66,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#4F4F4F',
-    fontSize: hp('2.8%'),
+    fontSize: hp(2.8),
     fontWeight: 'bold',
   },
 });
