@@ -2,10 +2,18 @@ import React, {Component} from 'react';
 import {KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import FormField from './form_field';
-import {grayTextColor, bodyStandardSize, bodyLineHeight} from '../common';
+import {bodyStandardSize, bodyLineHeight, darkGray, gray, paddingStandard} from '../common';
+import {submitContact} from '../../networking/api';
 
 type Props = {};
 export default class SubmitContact extends Component<Props> {
+  submitContact() {
+    submitContact().then(movies => {
+      console.log(movies);
+      this.props.navigation.navigate('SubmitConfirmation');
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -28,7 +36,7 @@ export default class SubmitContact extends Component<Props> {
         <KeyboardAvoidingView behavior='padding'>
           <TouchableOpacity 
             style={styles.actionButton} 
-            onPress={() => this.props.navigation.navigate('Splash')}>
+            onPress={() => this.submitContact()}>
             <Text style={styles.actionButtonText}>SUBMIT</Text>
           </TouchableOpacity>
         </KeyboardAvoidingView>
@@ -56,18 +64,18 @@ const styles = StyleSheet.create({
   content: {
     backgroundColor: '#FAFAFA',
     flex: 1,
-    paddingVertical: hp(7),
-    paddingHorizontal: wp(7),
+    paddingVertical: hp(paddingStandard),
+    paddingHorizontal: wp(paddingStandard),
   },
   explanation: {
-    color: grayTextColor,
+    color: gray,
     fontSize: hp(bodyStandardSize),
     fontStyle: 'italic',
     lineHeight: hp(bodyLineHeight),
     marginTop: hp(bodyStandardSize),
   },
   title: {
-    color: '#4F4F4F',
+    color: darkGray,
     fontSize: hp(2.8),
     fontWeight: 'bold',
   },
