@@ -1,27 +1,20 @@
 {
-  "name": "onetap",
-  "version": "0.0.1",
-  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "eject": "expo eject"
   },
   "dependencies": {
-    "react": "16.8.3",
-    "react-native": "0.59.8",
-    "react-native-gesture-handler": "^1.2.1",
+    "expo": "^32.0.0",
+    "react": "16.5.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-responsive-screen": "^1.2.2",
     "react-navigation": "^3.11.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/runtime": "^7.4.4",
-    "babel-jest": "^24.8.0",
-    "jest": "^24.8.0",
-    "metro-react-native-babel-preset": "^0.54.1",
-    "react-test-renderer": "16.8.3"
+    "babel-preset-expo": "^5.0.0"
   },
-  "jest": {
-    "preset": "react-native"
-  }
+  "private": true
 }

@@ -9,8 +9,7 @@ type Props = {};
 export default class SubmitContact extends Component<Props> {
   submitContact() {
     submitContact().then(movies => {
-      console.log(movies);
-      this.props.navigation.navigate('SubmitConfirmation');
+      this.props.navigation.navigate('Confirmation');
     })
   }
 

@@ -1,16 +1,12 @@
-
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
 import {createStackNavigator, createAppContainer} from "react-navigation";
 import SubmitContact from './src/components/submit_contact/submit_contact';
-import Splash from './src/components/splash/splash';
-import SubmitConfirmation from './src/components/submit_confirmation/submit_confirmation';
+import Confirmation from './src/components/confirmation/confirmation';
 
 const AppNavigator = createStackNavigator(
   {
     SubmitContact: SubmitContact,
-    SubmitConfirmation: SubmitConfirmation,
-    Splash: Splash,
+    Confirmation: Confirmation,
   },
   {
     initialRouteName: 'SubmitContact',

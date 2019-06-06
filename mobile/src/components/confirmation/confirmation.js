@@ -8,13 +8,13 @@ type Props = {
     fieldDescription: String;
     placeholder: String;
 };
-export default class SubmitConfirmation extends Component<Props> {
+export default class Confirmation extends Component<Props> {
   render() {
     return (
         <View style={styles.container}>
             <View style={styles.topBar}>
                 <TouchableOpacity 
-                    onPress={() => this.props.navigation.navigate('Splash')}
+                    onPress={() => this.props.navigation.navigate('SubmitContact')}
                 >
                     <Image source={require('../../assets/cancel.png')} />
                 </TouchableOpacity>
