@@ -1,0 +1,10 @@
+{
+  "name": "onetap-backend",
+  "version": "0.0.0",
+  "description": "The NOW backend that powers Onetap.",
+  "main": "index.js",
+  "author": "tariqp",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
