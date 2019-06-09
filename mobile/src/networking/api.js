@@ -1,7 +1,8 @@
-export const submitContact = async () => {
+export const submitContact = async (phoneNumber, name) => {
     try {
-        let response = await fetch('https://facebook.github.io/react-native/movies.json');
-        let json = await response.json();
-        return json.movies;
+        let response = await fetch('https://onetap-backend.tariqpatanam.now.sh', {
+            method: 'POST',
+        });
+        return response;
     } catch (error) {}
 }

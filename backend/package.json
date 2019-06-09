@@ -5,6 +5,7 @@
   "main": "index.js",
   "author": "tariqp",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "joi": "^14.3.1"
   }
 }
