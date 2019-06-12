@@ -1,6 +1,10 @@
-const Joi = require('joi');
+const Joi = require('@hapi/joi');
 const express = require('express');
 const app = express();
+
+const accountSid = 'ACa41f6de1b6f7bde19f5192ad2223908b';
+const authToken = 'f4aface3d7133312deecab813f3355ec';
+const client = require('twilio')(accountSid, authToken);
 
 app.use(express.json());
 
@@ -9,30 +13,29 @@ app.get('*', (req, res) => {
 });
 
 app.post('*', (req, res) => {
-    // Input validation
+    validateContactInfo(req.body).then(validatedBody => {
+        const {name, phoneNumber} = validatedBody;
+        return client.messages.create({
+            body: `${name}, this is one tap that began it all.`,
+            from: '+12015489471',
+            to: phoneNumber, 
+        });
+    }).then(() => res.status(200).send())
+    .catch(error => {
+        if (error.name === 'ValidationError') {
+            res.status(400).send(`Validation error: ${error.details[0].message}`);
+        } else {
+            res.status(400).send(`Here is the error: ${error}`);
+        }
+    });
+});
+
+function validateContactInfo(requestBody) {
     const schema = Joi.object().keys({
         name: Joi.string().required(),
-        phoneNumber: Joi.string().regex(/[0-9]{10}/).required()
+        phoneNumber: Joi.string().regex(/\+1[0-9]{10}/).required()
     });
-    const validationResult = Joi.validate(req.body, schema);
-    if (validationResult.error) {
-        res.status(400).send(validationResult.error.details[0].message);
-        return;
-    }
-
-    res.status(200).send();
-
-    // // Parse the request to get phone number and name
-    // const userPhoneNumber = req.body.phoneNumber;
-    // const userName = req.body.name;
-
-    // // Send a confirmaiton message using Twilio
-
-    // // Store name and number in Airtable if the name does not exist 
-
-    // res.status(200).send();
-
-    // Return an invalid status when not valid phone number or name or TWILIO or Airtable fails
-});
+    return Joi.validate(requestBody, schema);
+}
 
 module.exports = app; 
