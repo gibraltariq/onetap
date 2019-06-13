@@ -1,12 +1,17 @@
+// Server-level
 const Joi = require('@hapi/joi');
 const express = require('express');
 const app = express();
+app.use(express.json());
 
+// Twilio API
 const accountSid = 'ACa41f6de1b6f7bde19f5192ad2223908b';
 const authToken = 'f4aface3d7133312deecab813f3355ec';
 const client = require('twilio')(accountSid, authToken);
 
-app.use(express.json());
+// Airtable API
+var Airtable = require('airtable');
+var base = new Airtable({apiKey: 'keyYu1ZfxjAzR3wVs'}).base('appVJIbLHJzjJsJps');
 
 app.get('*', (req, res) => {
     res.send('You are GETing.');
@@ -16,9 +21,16 @@ app.post('*', (req, res) => {
     validateContactInfo(req.body).then(validatedBody => {
         const {name, phoneNumber} = validatedBody;
         return client.messages.create({
-            body: `${name}, this is one tap that began it all.`,
+            body: `Thanks for signing up for Onetap. A planner will be in touch shortly! Oh and we love your acting ${name}.`,
             from: '+12015489471',
             to: phoneNumber, 
+        })
+        .then(() => validatedBody);
+    }).then(validatedBody => {
+        const {name, phoneNumber} = validatedBody;
+        return base('Contacts').create({
+            "Name": name,
+            "Phone Number": phoneNumber
         });
     }).then(() => res.status(200).send())
     .catch(error => {
