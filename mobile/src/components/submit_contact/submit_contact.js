@@ -7,8 +7,17 @@ import {submitContact} from '../../networking/api';
 
 type Props = {};
 export default class SubmitContact extends Component<Props> {
-  submitContact() {
-    submitContact().then(movies => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      phoneNumber: '',
+    };
+  }
+
+  submitContact(name, phoneNumber) {
+    submitContact(name, phoneNumber).then(response => {
+      console.log(response);
       this.props.navigation.navigate('Confirmation');
     })
   }
@@ -23,19 +32,21 @@ export default class SubmitContact extends Component<Props> {
               Drop us your phone number and we'll be in touch. Don't worry, Onetap is free until you're ready to pay.
             </Text>
           </View>
-          <FormField 
+          <FormField
             fieldDescription={'An expert can text me at'} 
-            placeholder='+1' 
-            keyboardType={'phone-pad'}/>
-          <FormField 
+            keyboardType={'phone-pad'}
+            onChangeText={(phoneNumber) => this.setState({phoneNumber})}
+            placeholder='+1' />
+          <FormField
             autoCorrect={false}
             fieldDescription={'My name is'} 
+            onChangeText={(name) => this.setState({name})}
             placeholder='Salman Khan'/>
         </View>
         <KeyboardAvoidingView behavior='padding'>
           <TouchableOpacity 
             style={styles.actionButton} 
-            onPress={() => this.submitContact()}>
+            onPress={() => this.submitContact(this.state.name, this.state.phoneNumber)}>
             <Text style={styles.actionButtonText}>SUBMIT</Text>
           </TouchableOpacity>
         </KeyboardAvoidingView>
