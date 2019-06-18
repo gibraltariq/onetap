@@ -17,7 +17,6 @@ export default class SubmitContact extends Component<Props> {
 
   submitContact(name, phoneNumber) {
     submitContact(name, phoneNumber).then(response => {
-      console.log(response);
       this.props.navigation.navigate('Confirmation');
     })
   }

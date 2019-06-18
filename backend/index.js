@@ -5,14 +5,12 @@ const app = express();
 app.use(express.json());
 
 // Twilio API
-const testAccountSid = 'ACa45c98493bb668e8758c0dbe90b08878';
-const testAuthToken = '9d74a7becbac8a5f540d416cc04b68ab';
-const testFromNumber = '+15005550006';
-const client = require('twilio')(testAccountSid, testAuthToken);
+const env = require('./env');
+const client = require('twilio')(env.twilio_sid, env.twilio_key);
 
 // Airtable API
 var Airtable = require('airtable');
-var base = new Airtable({apiKey: 'keyYu1ZfxjAzR3wVs'}).base('appVJIbLHJzjJsJps');
+var base = new Airtable({apiKey: env.airtable_key}).base('appVJIbLHJzjJsJps');
 
 app.get('*', (req, res) => {
     res.send('You are GETing.');
@@ -22,8 +20,8 @@ app.post('/contact', (req, res) => {
     validateContactInfo(req.body).then(validatedBody => {
         const {name, phoneNumber} = validatedBody;
         return client.messages.create({
-            body: `Thanks for signing up for Onetap. A planner will be in touch shortly! Oh and we love your acting ${name}.`,
-            from: '+15005550006',
+            body: `Thanks for signing up for Onetap ${name}. A planner will be in touch shortly!`,
+            from: env.twilio_number,
             to: phoneNumber, 
         })
         .then(() => validatedBody);

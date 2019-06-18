@@ -2,8 +2,12 @@
   "name": "onetap-backend",
   "version": 2,
   "builds": [{
-    "src": "index.js", 
+    "src": "*.js", 
     "use": "@now/node"
   }],
-  "routes": [{ "src": "/.*", "dest": "/" }]
+  "routes": [{ "src": "/.*", "dest": "/" }],
+  "env": {
+    "TWILIO_KEY": "@twilio-api-key",
+    "AIRTABLE_KEY": "@airtable-api-key"
+  }
 }
