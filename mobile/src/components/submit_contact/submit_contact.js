@@ -53,7 +53,6 @@ export default class SubmitContact extends Component<Props> {
     );
   }
 }
-
 const styles = StyleSheet.create({
   actionButton: {
     alignItems: 'center',
