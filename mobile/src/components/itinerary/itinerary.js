@@ -1,7 +1,9 @@
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
-import {Image, Text, StyleSheet, View} from 'react-native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {paddingStandard, gray} from '../common';
+import {gray, paddingStandard} from '../common';
+import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
+
+import Activity from './activity';
 
 type Props = {};
 export default class Itinerary extends Component<Props> {
@@ -12,62 +14,40 @@ export default class Itinerary extends Component<Props> {
 
   render() {
     return (
-      <View style={styles.container}>
-          <View style={styles.header}>
-            <View style={styles.headerTop}>
-              <Image style={styles.headerPhoto} source={require('../../assets/sun-umbrella.png')}/>
-              <Text style={styles.title}>
-                  Our Italy itenirary for you Doofiyya
-              </Text>
-            </View>
-            <View style={styles.headerDetails}>
-              <Text style={styles.details}>2 people</Text>
-              <Text style={styles.details}>•</Text>
-              <Text style={styles.details}>Friday Mar 13 - Sunday Mar 22</Text>
-            </View>
-          </View>
-          <View style={styles.content}>
-            <View style={styles.timelineLine}></View>
-            <View style={styles.timeline}>
-              <Text style={Object.assign({}, styles.details, styles.timelineDay)}>Friday March 13, 8 AM</Text>
-              <View style={styles.activity}>
-                <Image style={styles.activityImage} source={require('../../assets/plane.png')}></Image>
-                <Text style={styles.activityTitle}>Flight to Milan</Text>
-                <View style={styles.activityDetails}>
-                  <Text style={styles.activityDetail}>8 AM (PST) - 9 PM (CEST)</Text>
-                  <Text style={styles.activityDetail}>$800</Text>
-                </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.container}>
+            <View style={styles.header}>
+              <View style={styles.headerTop}>
+                <Image style={styles.headerPhoto} source={require('../../assets/sunUmbrella.png')}/>
+                <Text style={styles.title}>
+                    Our Italy itenirary for you Doofiyya
+                </Text>
+              </View>
+              <View style={styles.headerDetails}>
+                <Text style={styles.details}>2 people</Text>
+                <Text style={styles.details}>•</Text>
+                <Text style={styles.details}>Friday Mar 13 - Sunday Mar 22</Text>
               </View>
             </View>
-          </View>
-      </View>
+            <View style={styles.content}>
+              <View style={styles.timelineSignifier}>
+                <Image source={require('../../assets/arrowUp.png')}/>
+                <View style={styles.timelineLine}></View>
+              </View>
+              <View style={styles.timeline}>
+                <Text style={Object.assign({}, styles.details, styles.timelineDay)}>Friday March 13, 8 AM</Text>
+                <Activity style={styles.activity}/>
+                <Activity />
+                <Activity />
+              </View>
+            </View>
+        </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-    activity: {
-      alignItems: 'center',
-      backgroundColor: '#56CCF2',
-      flex: 1,
-      shadowOffset: {height: hp(1)},
-      shadowColor: 'black',
-      shadowOpacity: 0.25,
-    },
-    activityDetail: {
-      fontSize: hp(2),
-      color: 'white',
-    },
-    activityDetails: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-    },
-    activityImage: {
-    },
-    activityTitle: {
-      fontSize: hp(3),
-      color: 'white',
-    },
     container: {
       flex: 1,
       justifyContent: 'flex-start',
@@ -108,10 +88,19 @@ const styles = StyleSheet.create({
       flex: 11,
     },
     timelineDay: {
-      paddingBottom: hp(1),
+      paddingLeft: hp(1.5),
     },
     timelineLine: {
-      justifyContent: 'flex-start',
+      borderLeftWidth: wp(1),
+      borderColor: "#BDBDBD",
       flex: 1,
-    }
+      height: 775,
+      width: 1,
+      marginTop: hp(0.5),
+    },
+    timelineSignifier: {
+      alignItems: 'center',
+      flex: 1,
+      marginTop: hp(1),
+    },
 });

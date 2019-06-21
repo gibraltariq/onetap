@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {darkGray, bodyLargeSize, bodyLineHeight, paddingStandard} from '../common';
+import React, {Component} from 'react';
+import {bodyLargeSize, bodyLineHeight, darkGray, paddingStandard} from '../common';
+import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 type Props = {
     autoCorrect: Boolean;

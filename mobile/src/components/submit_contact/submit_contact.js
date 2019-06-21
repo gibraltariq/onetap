@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
 import {KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import React, {Component} from 'react';
+import {bodyLineHeight, bodyStandardSize, darkGray, gray, paddingStandard} from '../common';
+import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
+
 import FormField from './form_field';
-import {bodyStandardSize, bodyLineHeight, darkGray, gray, paddingStandard} from '../common';
 import {submitContact} from '../../networking/api';
 
 type Props = {};
