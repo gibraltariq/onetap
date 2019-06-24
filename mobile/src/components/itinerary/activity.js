@@ -2,22 +2,34 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
-type Props = {};
-export default class Activity extends Component<Props> {
+import PropTypes from 'prop-types';
+
+export default class Activity extends Component {
+  static propTypes  = {
+    backgroundColor: PropTypes.string,
+    centerImage: PropTypes.element,
+    title: PropTypes.string.isRequired,
+  }
+
+  static defaultProps = {
+    backgroundColor: '#4FAFCE'
+  }
+
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
+    const backgroundColor = this.props.backgroundColor;
+
     return (
-      <View style={styles.container}>
-        <Image style={styles.activityImage} source={require('../../assets/plane.png')}></Image>
-        <Text style={styles.activityTitle}>Flight to Milan</Text>
-        <View style={styles.activityDetails}>
-            <Text style={styles.activityDetail}>8 AM (PST) - 9 PM (CEST)</Text>
-            <Text style={styles.activityDetail}>$800</Text>
+      <View style={{...styles.container, backgroundColor}}>
+        {this.props.centerImage}
+        <View>
+          <Text style={styles.title}>{this.props.title}</Text>
         </View>
+        {this.props.detail}
       </View>
     );
   }
@@ -25,14 +37,13 @@ export default class Activity extends Component<Props> {
 
 const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#4FAFCE',
       marginTop: hp(2),
       padding: hp(2),
       shadowOffset: {height: hp(1)},
       shadowColor: 'black',
       shadowOpacity: 0.25,
     },
-    activityDetail: {
+    detail: {
       fontSize: hp(1.75),
       color: 'white',
     },
@@ -41,10 +52,10 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between',
       marginTop: hp(0.75),
     },
-    activityImage: {
+    centerImage: {
       alignSelf: 'center',
     },
-    activityTitle: {
+    title: {
       color: 'white',
       fontSize: hp(2.5),
       textAlign: 'left',

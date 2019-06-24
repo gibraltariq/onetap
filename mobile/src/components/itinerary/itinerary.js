@@ -1,9 +1,10 @@
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
-import {bodyStandardSize, gray, standardContainerPadding} from '../common';
+import {bodyStandardSize, gray, lightGray, standardContainerPadding} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import Activity from './activity';
+import FlightActivity from './flight_activity';
 
 type Props = {};
 export default class Itinerary extends Component<Props> {
@@ -36,9 +37,9 @@ export default class Itinerary extends Component<Props> {
               </View>
               <View style={styles.timeline}>
                 <Text style={{...styles.details, ...styles.timelineDay}}>Friday March 13, 8 AM</Text>
-                <Activity style={styles.activity}/>
-                <Activity />
-                <Activity />
+                <FlightActivity style={styles.activity}/>
+                <Activity backgroundColor={'#65B888'} title={'Train to Milan City Center'}/>
+                <FlightActivity />
               </View>
             </View>
         </View>
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     },
     line: {
       borderLeftWidth: wp(0.75),
-      borderColor: "#BDBDBD",
+      borderColor: lightGray,
       flex: 1,
       height: 775,
       width: 1,

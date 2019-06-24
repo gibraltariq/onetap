@@ -1,4 +1,5 @@
 /** Colors */
+export const lightGray = '#BDBDBD';
 export const gray = '#828282';
 export const darkGray = '#4F4F4F';
 
