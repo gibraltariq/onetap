@@ -29,12 +29,12 @@ export default class Activity extends Component {
     }
     return (
       <View style={{...styles.container, backgroundColor}}>
-        {this.props.centerImage}
+        {this.props.topImage}
         <View style={styles.titleBar}>
           <Text style={styles.title}>{this.props.title}</Text>
           {sideIcon}
         </View>
-        {this.props.detail}
+        {this.props.details}
       </View>
     );
   }
@@ -51,15 +51,6 @@ const styles = StyleSheet.create({
       shadowOffset: {height: hp(0.5)},
       shadowColor: 'black',
       shadowOpacity: 0.25,
-    },
-    detail: {
-      fontSize: hp(1.75),
-      color: 'white',
-    },
-    activityDetails: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      marginTop: hp(0.75),
     },
     title: {
       color: 'white',
