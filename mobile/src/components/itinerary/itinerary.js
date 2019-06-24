@@ -38,7 +38,10 @@ export default class Itinerary extends Component<Props> {
               <View style={styles.timeline}>
                 <Text style={{...styles.details, ...styles.timelineDay}}>Friday March 13, 8 AM</Text>
                 <FlightActivity style={styles.activity}/>
-                <Activity backgroundColor={'#65B888'} title={'Train to Milan City Center'}/>
+                <Activity 
+                  backgroundColor={'#65B888'} 
+                  sideIconSource={require('../../assets/map.png')}
+                  title={'Train to Milan City Center'}/>
                 <FlightActivity />
               </View>
             </View>

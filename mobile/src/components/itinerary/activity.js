@@ -21,13 +21,18 @@ export default class Activity extends Component {
   }
 
   render() {
-    const backgroundColor = this.props.backgroundColor;
+    const {backgroundColor, sideIconSource} = this.props;
 
+    let sideIcon;
+    if (sideIconSource) {
+      sideIcon = <Image style={styles.sideIcon} source={sideIconSource} />;
+    }
     return (
       <View style={{...styles.container, backgroundColor}}>
         {this.props.centerImage}
-        <View>
+        <View style={styles.titleBar}>
           <Text style={styles.title}>{this.props.title}</Text>
+          {sideIcon}
         </View>
         {this.props.detail}
       </View>
@@ -36,10 +41,14 @@ export default class Activity extends Component {
 }
 
 const styles = StyleSheet.create({
+    centerImage: {
+      alignSelf: 'center',
+    },
     container: {
       marginTop: hp(2),
-      padding: hp(2),
-      shadowOffset: {height: hp(1)},
+      paddingHorizontal: wp(3),
+      paddingVertical: hp(1.5),
+      shadowOffset: {height: hp(0.5)},
       shadowColor: 'black',
       shadowOpacity: 0.25,
     },
@@ -52,12 +61,17 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between',
       marginTop: hp(0.75),
     },
-    centerImage: {
-      alignSelf: 'center',
-    },
     title: {
       color: 'white',
       fontSize: hp(2.5),
       textAlign: 'left',
+    },
+    titleBar: {
+      alignItems: 'center',
+      flex: 1,
+      flexDirection: 'row',
+    },
+    sideIcon: {
+      marginLeft: wp(5),
     },
 });
