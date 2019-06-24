@@ -1,6 +1,6 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {Component} from 'react';
-import {bodyLargeSize, bodyLineHeight, darkGray, paddingStandard} from '../common';
+import {bodyLargeSize, bodyLineHeight, darkGray, standardContainerPadding} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 type Props = {
@@ -34,7 +34,7 @@ export default class Confirmation extends Component<Props> {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: wp(paddingStandard),
+        paddingHorizontal: wp(standardContainerPadding),
         justifyContent: 'space-between',
     },
     content: {
@@ -50,11 +50,11 @@ const styles = StyleSheet.create({
     },
     pseudo: {
         flex: 1,
-        paddingBottom: hp(paddingStandard),
+        paddingBottom: hp(standardContainerPadding),
     },
     topBar: {
         flex: 1,
         alignItems: 'flex-end',
-        paddingTop: hp(paddingStandard),
+        paddingTop: hp(standardContainerPadding),
     },
 });

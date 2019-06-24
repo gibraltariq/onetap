@@ -1,6 +1,5 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
-import {gray, paddingStandard} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 type Props = {};
@@ -26,26 +25,28 @@ export default class Activity extends Component<Props> {
 
 const styles = StyleSheet.create({
     container: {
-      alignItems: 'center',
-      backgroundColor: '#56CCF2',
+      backgroundColor: '#4FAFCE',
       marginTop: hp(2),
-      paddingVertical: hp(2),
+      padding: hp(2),
       shadowOffset: {height: hp(1)},
       shadowColor: 'black',
       shadowOpacity: 0.25,
     },
     activityDetail: {
-      fontSize: hp(2),
+      fontSize: hp(1.75),
       color: 'white',
     },
     activityDetails: {
       flexDirection: 'row',
       justifyContent: 'space-between',
+      marginTop: hp(0.75),
     },
     activityImage: {
+      alignSelf: 'center',
     },
     activityTitle: {
-      fontSize: hp(3),
       color: 'white',
+      fontSize: hp(2.5),
+      textAlign: 'left',
     },
 });

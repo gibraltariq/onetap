@@ -1,6 +1,6 @@
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
-import {gray, paddingStandard} from '../common';
+import {bodyStandardSize, gray, standardContainerPadding} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import Activity from './activity';
@@ -30,12 +30,12 @@ export default class Itinerary extends Component<Props> {
               </View>
             </View>
             <View style={styles.content}>
-              <View style={styles.timelineSignifier}>
+              <View style={styles.timelineLine}>
                 <Image source={require('../../assets/arrowUp.png')}/>
-                <View style={styles.timelineLine}></View>
+                <View style={styles.line}></View>
               </View>
               <View style={styles.timeline}>
-                <Text style={Object.assign({}, styles.details, styles.timelineDay)}>Friday March 13, 8 AM</Text>
+                <Text style={{...styles.details, ...styles.timelineDay}}>Friday March 13, 8 AM</Text>
                 <Activity style={styles.activity}/>
                 <Activity />
                 <Activity />
@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'flex-start',
-      paddingHorizontal: wp(paddingStandard),
-      paddingVertical: hp(paddingStandard),
+      paddingHorizontal: wp(standardContainerPadding),
+      paddingVertical: hp(standardContainerPadding),
     },
     content: {
       flex: 1,
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     },
     details: {
       color: gray,
-      fontSize: hp(2)
+      fontSize: hp(bodyStandardSize)
     },
     header: {
       paddingBottom: hp(4)
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     },
     headerPhoto: {
       flex: 1,
-      marginRight: wp(paddingStandard)
+      marginRight: wp(standardContainerPadding)
     },
     title: {
       flex: 2,
@@ -90,15 +90,15 @@ const styles = StyleSheet.create({
     timelineDay: {
       paddingLeft: hp(1.5),
     },
-    timelineLine: {
-      borderLeftWidth: wp(1),
+    line: {
+      borderLeftWidth: wp(0.75),
       borderColor: "#BDBDBD",
       flex: 1,
       height: 775,
       width: 1,
       marginTop: hp(0.5),
     },
-    timelineSignifier: {
+    timelineLine: {
       alignItems: 'center',
       flex: 1,
       marginTop: hp(1),
