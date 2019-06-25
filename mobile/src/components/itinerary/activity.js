@@ -1,4 +1,4 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
@@ -21,20 +21,37 @@ export default class Activity extends Component {
   }
 
   render() {
-    const {backgroundColor, sideIconSource} = this.props;
+    const {backgroundColor, backgroundImage, sideIconSource} = this.props;
 
     let sideIcon;
     if (sideIconSource) {
       sideIcon = <Image style={styles.sideIcon} source={sideIconSource} />;
     }
-    return (
-      <View style={{...styles.container, backgroundColor}}>
+
+    const childComponents = (
+      <View>
         {this.props.topImage}
         <View style={styles.titleBar}>
           <Text style={styles.title}>{this.props.title}</Text>
           {sideIcon}
         </View>
         {this.props.details}
+      </View>
+    );
+
+    return (
+      <View>
+        {backgroundImage ? (
+          <ImageBackground 
+            source={this.props.backgroundImage} 
+            style={{...styles.container, width: '100%', height: '100%'}}>
+            {childComponents}
+          </ImageBackground>
+        ) : (
+          <View style={{...styles.container, backgroundColor}}>
+            {childComponents}
+          </View>
+        )}
       </View>
     );
   }

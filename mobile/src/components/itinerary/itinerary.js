@@ -5,6 +5,7 @@ import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-nativ
 
 import Activity from './activity';
 import FlightActivity from './flight_activity';
+import HotelActivity from './hotel_activity';
 
 type Props = {};
 export default class Itinerary extends Component<Props> {
@@ -35,15 +36,17 @@ export default class Itinerary extends Component<Props> {
                 <Image source={require('../../assets/arrowUp.png')}/>
                 <View style={styles.line}></View>
               </View>
+
               <View style={styles.timeline}>
                 <Text style={{...styles.details, ...styles.timelineDay}}>Friday March 13, 8 AM</Text>
-                <FlightActivity style={styles.activity}/>
+                <FlightActivity/>
                 <Activity 
                   backgroundColor={'#65B888'} 
                   sideIconSource={require('../../assets/map.png')}
                   title={'Train to Milan City Center'}/>
-                <FlightActivity />
+                <HotelActivity />
               </View>
+
             </View>
         </View>
       </ScrollView>
