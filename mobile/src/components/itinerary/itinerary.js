@@ -15,6 +15,23 @@ export default class Itinerary extends Component<Props> {
   }
 
   render() {
+    const day = 
+    <View key={1} style={{marginBottom: hp(3)}}>
+      <Text style={{...styles.details, ...styles.timelineDay}}>Friday March 13, 8 AM</Text>
+      <FlightActivity/>
+      <Activity 
+        backgroundColor={'#65B888'} 
+        sideIconSource={require('../../assets/map.png')}
+        title={'Train to Milan City Center'}/>
+      <Activity 
+        backgroundColor={'#BB6BD9'} 
+        sideIconLarge={true}
+        sideIconSource={require('../../assets/meatloaf.png')}
+        title={'Dinner at Luogi di Aimo'}/>
+      <HotelActivity withImage={true}/>
+    </View>;
+    const days = [day, day];
+
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
@@ -33,18 +50,7 @@ export default class Itinerary extends Component<Props> {
           </View>
           
           <View style={styles.timeline}>
-            <Text style={{...styles.details, ...styles.timelineDay}}>Friday March 13, 8 AM</Text>
-            <FlightActivity/>
-            <Activity 
-              backgroundColor={'#65B888'} 
-              sideIconSource={require('../../assets/map.png')}
-              title={'Train to Milan City Center'}/>
-            <Activity 
-              backgroundColor={'#BB6BD9'} 
-              sideIconLarge={true}
-              sideIconSource={require('../../assets/meatloaf.png')}
-              title={'Dinner at Luogi di Aimo'}/>
-            <HotelActivity withImage={true}/>
+            {days}
           </View>
         </View>
       </ScrollView>
@@ -68,7 +74,7 @@ const styles = StyleSheet.create({
       fontSize: hp(bodyStandardSize)
     },
     header: {
-      paddingBottom: hp(4)
+      marginBottom: hp(4)
     },
     headerTop: {
       alignItems: 'center',
@@ -88,9 +94,6 @@ const styles = StyleSheet.create({
       fontSize: hp(3),
       lineHeight: hp(4),
       textAlign: 'right',
-    },
-    timeline: {
-      flex: 11,
     },
     timelineDay: {
       paddingLeft: hp(1.5),
