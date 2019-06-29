@@ -39,6 +39,11 @@ export default class Itinerary extends Component<Props> {
               backgroundColor={'#65B888'} 
               sideIconSource={require('../../assets/map.png')}
               title={'Train to Milan City Center'}/>
+            <Activity 
+              backgroundColor={'#BB6BD9'} 
+              sideIconLarge={true}
+              sideIconSource={require('../../assets/meatloaf.png')}
+              title={'Dinner at Luogi di Aimo'}/>
             <HotelActivity withImage={true}/>
           </View>
         </View>

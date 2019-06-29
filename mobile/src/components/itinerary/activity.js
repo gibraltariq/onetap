@@ -25,7 +25,7 @@ export default class Activity extends Component {
 
     let sideIcon;
     if (sideIconSource) {
-      sideIcon = <Image style={styles.sideIcon} source={sideIconSource} />;
+      sideIcon = <Image style={this.props.sideIconLarge ? styles.sideIconLarge : styles.sideIcon} source={sideIconSource} />;
     }
 
     const childComponents = (
@@ -47,6 +47,9 @@ export default class Activity extends Component {
   }
 }
 
+const paddingHorizontal = wp(4);
+const paddingVertical = hp(1.5);
+
 const styles = StyleSheet.create({
     topImage: {
       alignSelf: 'center',
@@ -54,8 +57,8 @@ const styles = StyleSheet.create({
     },
     container: {
       marginTop: hp(2),
-      paddingHorizontal: wp(3),
-      paddingVertical: hp(1.5),
+      paddingHorizontal,
+      paddingVertical,
       shadowOffset: {height: hp(0.5)},
       shadowColor: 'black',
       shadowOpacity: 0.25,
@@ -72,6 +75,9 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between',
     },
     sideIcon: {
-      marginRight: wp(5),
+    },
+    sideIconLarge: {
+      marginRight: -paddingHorizontal,
+      marginVertical: -paddingVertical,
     },
 });
