@@ -13,6 +13,8 @@ export default class HotelActivity extends Component {
   render() {
     return (
       <Activity
+        topImage={require('../../assets/bed.png')}
+        backgroundColor='#463429'
         title='AirBnB with Scott Markle'
       />
     );

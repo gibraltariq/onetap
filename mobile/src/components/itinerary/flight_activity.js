@@ -15,9 +15,7 @@ export default class FlightActivity extends Component<Props> {
     return (
       <Activity
         title='Flight to Milan'
-        topImage={
-          <Image style={styles.activityImage} source={require('../../assets/plane.png')}></Image>
-        }
+        topImage={require('../../assets/plane.png')}
         details={
             <View style={styles.activityDetails}>
                 <Text style={styles.activityDetail}>8 AM (PST) - 9 PM (CEST)</Text>
@@ -38,8 +36,5 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-between',
       marginTop: hp(0.75),
-    },
-    activityImage: {
-      alignSelf: 'center',
-    },
+    }
 });

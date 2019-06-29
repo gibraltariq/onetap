@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 export default class Activity extends Component {
   static propTypes  = {
     backgroundColor: PropTypes.string,
-    centerImage: PropTypes.element,
+    topImage: PropTypes.number,
     title: PropTypes.string.isRequired,
   }
 
@@ -30,7 +30,7 @@ export default class Activity extends Component {
 
     const childComponents = (
       <View>
-        {this.props.topImage}
+        {this.props.topImage ? <Image style={styles.topImage} source={this.props.topImage}/> : []}
         <View style={styles.titleBar}>
           <Text style={styles.title}>{this.props.title}</Text>
           {sideIcon}
@@ -48,8 +48,9 @@ export default class Activity extends Component {
 }
 
 const styles = StyleSheet.create({
-    centerImage: {
+    topImage: {
       alignSelf: 'center',
+      marginBottom: hp(1),
     },
     container: {
       marginTop: hp(2),
@@ -68,8 +69,9 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       flex: 1,
       flexDirection: 'row',
+      justifyContent: 'space-between',
     },
     sideIcon: {
-      marginLeft: wp(5),
+      marginRight: wp(5),
     },
 });
