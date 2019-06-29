@@ -18,36 +18,29 @@ export default class Itinerary extends Component<Props> {
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
-            <View style={styles.header}>
-              <View style={styles.headerTop}>
-                <Image style={styles.headerPhoto} source={require('../../assets/sunUmbrella.png')}/>
-                <Text style={styles.title}>
-                    Our Italy itenirary for you Doofiyya
-                </Text>
-              </View>
-              <View style={styles.headerDetails}>
-                <Text style={styles.details}>2 people</Text>
-                <Text style={styles.details}>•</Text>
-                <Text style={styles.details}>Friday Mar 13 - Sunday Mar 22</Text>
-              </View>
+        <View style={styles.header}>
+          <View style={styles.headerTop}>
+              <Image style={styles.headerPhoto} source={require('../../assets/sunUmbrella.png')}/>
+              <Text style={styles.title}>
+                  Our Italy itenirary for you Doofiyya
+              </Text>
             </View>
-            <View style={styles.content}>
-              <View style={styles.timelineLine}>
-                <Image source={require('../../assets/arrowUp.png')}/>
-                <View style={styles.line}></View>
-              </View>
-
-              <View style={styles.timeline}>
-                <Text style={{...styles.details, ...styles.timelineDay}}>Friday March 13, 8 AM</Text>
-                <FlightActivity/>
-                <Activity 
-                  backgroundColor={'#65B888'} 
-                  sideIconSource={require('../../assets/map.png')}
-                  title={'Train to Milan City Center'}/>
-                <HotelActivity />
-              </View>
-
+            <View style={styles.headerDetails}>
+              <Text style={styles.details}>2 people</Text>
+              <Text style={styles.details}>•</Text>
+              <Text style={styles.details}>Friday Mar 13 - Sunday Mar 22</Text>
             </View>
+          </View>
+          
+          <View style={styles.timeline}>
+            <Text style={{...styles.details, ...styles.timelineDay}}>Friday March 13, 8 AM</Text>
+            <FlightActivity/>
+            <Activity 
+              backgroundColor={'#65B888'} 
+              sideIconSource={require('../../assets/map.png')}
+              title={'Train to Milan City Center'}/>
+            <HotelActivity />
+          </View>
         </View>
       </ScrollView>
     );
@@ -96,18 +89,5 @@ const styles = StyleSheet.create({
     },
     timelineDay: {
       paddingLeft: hp(1.5),
-    },
-    line: {
-      borderLeftWidth: wp(0.75),
-      borderColor: lightGray,
-      flex: 1,
-      height: 775,
-      width: 1,
-      marginTop: hp(0.5),
-    },
-    timelineLine: {
-      alignItems: 'center',
-      flex: 1,
-      marginTop: hp(1),
     },
 });

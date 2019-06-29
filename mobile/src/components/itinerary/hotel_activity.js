@@ -13,7 +13,6 @@ export default class HotelActivity extends Component {
   render() {
     return (
       <Activity
-        backgroundImage={require('../../assets/airbnb.png')}
         title='AirBnB with Scott Markle'
       />
     );
