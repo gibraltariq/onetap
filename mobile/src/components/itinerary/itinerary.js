@@ -17,7 +17,7 @@ export default class Itinerary extends Component<Props> {
   render() {
     const day = 
     <View key={1} style={{marginBottom: hp(3)}}>
-      <Text style={{...styles.details, ...styles.timelineDay}}>Friday March 13, 8 AM</Text>
+      <Text style={{...styles.details, ...styles.timelineDate}}>Friday March 13, 8 AM</Text>
       <FlightActivity/>
       <Activity 
         backgroundColor={'#65B888'} 
@@ -95,7 +95,10 @@ const styles = StyleSheet.create({
       lineHeight: hp(4),
       textAlign: 'right',
     },
-    timelineDay: {
+    timeline: {
+      marginBottom: -hp(3),
+    },
+    timelineDate: {
       paddingLeft: hp(1.5),
     },
 });
