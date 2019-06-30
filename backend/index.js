@@ -12,10 +12,6 @@ const client = require('twilio')(env.twilio_sid, env.twilio_key);
 var Airtable = require('airtable');
 var base = new Airtable({apiKey: env.airtable_key}).base('appVJIbLHJzjJsJps');
 
-app.get('*', (req, res) => {
-    res.send('You are GETing.');
-});
-
 app.post('/contact', (req, res) => {
     validateContactInfo(req.body).then(validatedBody => {
         const {name, phoneNumber} = validatedBody;
@@ -48,5 +44,9 @@ function validateContactInfo(requestBody) {
     });
     return Joi.validate(requestBody, schema);
 }
+
+// Routes from other modules.
+const itinerary = require('./itinerary.js');
+app.use('/itinerary', itinerary);
 
 module.exports = app; 
