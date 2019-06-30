@@ -1,6 +1,6 @@
 import {KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {Component} from 'react';
-import {bodyLineHeight, bodyStandardSize, darkGray, gray, paddingStandard} from '../common';
+import {bodyLineHeight, bodyStandardSize, darkGray, gray, standardContainerPadding} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import FormField from './form_field';
@@ -73,8 +73,8 @@ const styles = StyleSheet.create({
   content: {
     backgroundColor: '#FAFAFA',
     flex: 1,
-    paddingVertical: hp(paddingStandard),
-    paddingHorizontal: wp(paddingStandard),
+    paddingVertical: hp(standardContainerPadding),
+    paddingHorizontal: wp(standardContainerPadding),
   },
   explanation: {
     color: gray,
