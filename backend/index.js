@@ -46,7 +46,7 @@ function validateContactInfo(requestBody) {
 }
 
 // Routes from other modules.
-const itinerary = require('./itinerary.js');
-app.use('/itinerary', itinerary);
+const trip = require('./routes/trip');
+app.use('/trip', trip);
 
 module.exports = app; 
