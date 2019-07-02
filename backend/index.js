@@ -3,9 +3,9 @@ const Joi = require('@hapi/joi');
 const express = require('express');
 const app = express();
 app.use(express.json());
+const env = require('./env');
 
 // Twilio API
-const env = require('./env');
 const client = require('twilio')(env.twilio_sid, env.twilio_key);
 
 // Airtable API

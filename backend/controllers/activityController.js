@@ -1,3 +1,12 @@
+const airtable = require('../common').base;
+
 exports.activityList = (req, res) => {
-    res.send('NOT IMPLEMENTED: Activity list for trip: ' + req.params.trip_id);
+    const tripId = req.params.trip_id || 'recuKM4pqk1lcF0te';
+
+    airtable('Trip').find(tripId, (error, trip_records) => {
+        if (error) {
+            res.status(500).send(error);
+        }
+        res.send(trip_records);
+    });
 };
