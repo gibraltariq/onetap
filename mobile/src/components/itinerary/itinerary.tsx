@@ -6,12 +6,19 @@ import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-nativ
 import Activity from './activity';
 import FlightActivity from './flight_activity';
 import HotelActivity from './hotel_activity';
+import {getTrip} from '../../networking/api';
 
-type Props = {};
-export default class Itinerary extends Component<Props> {
+export default class Itinerary extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      activities: []
+    };
+  }
+
+  componentDidMount() {
+    // TODO: what really needs to issue the request is the link given to a user.
+    getTrip().then(response => this.setState({activities: response}));
   }
 
   render() {
