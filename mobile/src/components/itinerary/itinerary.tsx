@@ -8,7 +8,12 @@ import FlightActivity from './flight_activity';
 import HotelActivity from './hotel_activity';
 import {getTrip} from '../../networking/api';
 
-export default class Itinerary extends Component {
+enum ACTIVITY_TYPE {
+  FLIGHT = 'flight',
+}
+
+type State = { activities: any[] };
+export default class Itinerary extends Component<{}, State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,15 +23,33 @@ export default class Itinerary extends Component {
 
   componentDidMount() {
     // TODO: what really needs to issue the request is the link given to a user.
-    getTrip().then(response => this.setState({activities: response}));
+    getTrip().then((activities:any) => this.setState({activities}));
   }
 
   render() {
+    let activityComponents = [];
+    for (const activityIndex in this.state.activities) {
+      const activity = this.state.activities[activityIndex];
+      switch(activity.type) {
+        case ACTIVITY_TYPE.FLIGHT: {
+          activityComponents.push(
+            <FlightActivity key={activityIndex}/>);
+          break;
+        }
+        default: {
+          activityComponents.push(
+            <Activity key={activityIndex} title={activity.title}/>);
+          break;
+        }
+      }
+    }
+
     const day = 
     <View key={1} style={{marginBottom: hp(3)}}>
       <Text style={{...styles.details, ...styles.timelineDate}}>Friday March 13, 8 AM</Text>
       <FlightActivity/>
-      <Activity 
+      {activityComponents}
+      {/* <Activity 
         backgroundColor={'#65B888'} 
         sideIconSource={require('../../assets/map.png')}
         title={'Train to Milan City Center'}/>
@@ -35,9 +58,9 @@ export default class Itinerary extends Component {
         sideIconLarge={true}
         sideIconSource={require('../../assets/meatloaf.png')}
         title={'Dinner at Luogi di Aimo'}/>
-      <HotelActivity withImage={true}/>
+      <HotelActivity withImage={true}/> */}
     </View>;
-    const days = [day, day];
+    const days = [day];
 
     return (
       <ScrollView showsVerticalScrollIndicator={false}>

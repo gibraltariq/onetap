@@ -19,11 +19,11 @@ export const getTrip = async () => {
     const tripId = 'recuKM4pqk1lcF0te';
     const tripURL = 'http://localhost:3000/trip/' + tripId;
     try {
-        let response = await fetch(tripURL, {
+        let response = await fetch('http://localhost:3000/trip/recuKM4pqk1lcF0te', {
             method: 'GET',
         });
         if (!response.ok) throw new Error(response.status);
-        return response;
+        return response.json();
     } catch (error) {
         console.error(error);
     }
