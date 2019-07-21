@@ -47,7 +47,7 @@ export default class Itinerary extends Component {
     const day = 
     <View key={1} style={{marginBottom: hp(3)}}>
       <Text style={{...styles.details, ...styles.timelineDate}}>Friday March 13, 8 AM</Text>
-      <FlightActivity/>
+      {/* <FlightActivity/> */}
       {activityComponents}
       {/* <Activity 
         backgroundColor={'#65B888'} 
