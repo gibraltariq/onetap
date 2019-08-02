@@ -15,8 +15,21 @@ exports.activityList = async (req, res) => {
         const activityIds = tripRecord.fields.activities;
         let activities = [];
         for (const activityId of activityIds) {
-            activities.push(await getActivity(activityId));
+            let activity = await getActivity(activityId);
+
+            // Activity start_time is required. Really this should be in 
+            // Airtable but they don't support required fields.
+            if (activity.start_time) {
+                activities.push(activity);
+            }
         }
+
+        // Sort activities by start time.
+        activities.sort((activityA, activityB) => {
+            const startTimeA = new Date(activityA.start_time);
+            const startTimeB = new Date(activityB.start_time);
+            return startTimeA.getTime() - startTimeB.getTime();
+        });
 
         res.send(activities);
     } catch (error) {

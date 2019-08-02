@@ -8,12 +8,12 @@ import FlightActivity from './flight_activity';
 import HotelActivity from './hotel_activity';
 import {getTrip} from '../../networking/api';
 
-enum ACTIVITY_TYPE {
-  FLIGHT = 'flight',
-}
+const ACTIVITY_TYPE = {
+  FLIGHT: 'flight',
+};
 
-type State = { activities: any[] };
-export default class Itinerary extends Component<{}, State> {
+// type State = { activities: any[] };
+export default class Itinerary extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +23,7 @@ export default class Itinerary extends Component<{}, State> {
 
   componentDidMount() {
     // TODO: what really needs to issue the request is the link given to a user.
-    getTrip().then((activities:any) => this.setState({activities}));
+    getTrip().then((activities) => this.setState({activities}));
   }
 
   render() {
@@ -47,7 +47,7 @@ export default class Itinerary extends Component<{}, State> {
     const day = 
     <View key={1} style={{marginBottom: hp(3)}}>
       <Text style={{...styles.details, ...styles.timelineDate}}>Friday March 13, 8 AM</Text>
-      <FlightActivity/>
+      {/* <FlightActivity/> */}
       {activityComponents}
       {/* <Activity 
         backgroundColor={'#65B888'} 
