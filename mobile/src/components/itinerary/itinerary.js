@@ -12,33 +12,33 @@ const ACTIVITY_TYPE = {
   FLIGHT: 'flight',
 };
 
-// type State = { activities: any[] };
+// type State = { activityDays: any[] };
 export default class Itinerary extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activities: []
+      activityDays: []
     };
   }
 
   componentDidMount() {
     // TODO: what really needs to issue the request is the link given to a user.
-    getTrip().then((activities) => this.setState({activities}));
+    getTrip().then((activityDays) => this.setState({activityDays}));
   }
 
   render() {
     let activityComponents = [];
-    for (const activityIndex in this.state.activities) {
-      const activity = this.state.activities[activityIndex];
+    for (const dayIndex in this.state.activityDays) {
+      const activity = this.state.activityDays[dayIndex];
       switch(activity.type) {
         case ACTIVITY_TYPE.FLIGHT: {
           activityComponents.push(
-            <FlightActivity key={activityIndex}/>);
+            <FlightActivity key={dayIndex}/>);
           break;
         }
         default: {
           activityComponents.push(
-            <Activity key={activityIndex} title={activity.title}/>);
+            <Activity key={dayIndex} title={activity.title}/>);
           break;
         }
       }
