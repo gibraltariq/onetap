@@ -1,16 +1,13 @@
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
-import {bodyStandardSize, gray, lightGray, standardContainerPadding} from '../common';
+import {bodyStandardSize, detailsStyle, gray, lightGray, standardContainerPadding} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import Activity from './activity';
 import FlightActivity from './flight_activity';
 import HotelActivity from './hotel_activity';
+import TripDay from './trip_day';
 import {getTrip} from '../../networking/api';
-
-const ACTIVITY_TYPE = {
-  FLIGHT: 'flight',
-};
 
 // type State = { activityDays: any[] };
 export default class Itinerary extends Component {
@@ -27,40 +24,30 @@ export default class Itinerary extends Component {
   }
 
   render() {
-    let activityComponents = [];
-    for (const dayIndex in this.state.activityDays) {
-      const activity = this.state.activityDays[dayIndex];
-      switch(activity.type) {
-        case ACTIVITY_TYPE.FLIGHT: {
-          activityComponents.push(
-            <FlightActivity key={dayIndex}/>);
-          break;
-        }
-        default: {
-          activityComponents.push(
-            <Activity key={dayIndex} title={activity.title}/>);
-          break;
-        }
-      }
+    console.log(`Rendering`);
+    let dayComponents = [];
+    for (let dayIndex = 0; dayIndex < this.state.activityDays.length; dayIndex++) {
+      const activities = this.state.activityDays[dayIndex];
+      dayComponents.push(<TripDay activities={activities} key={dayIndex}/>);
     }
-
-    const day = 
-    <View key={1} style={{marginBottom: hp(3)}}>
-      <Text style={{...styles.details, ...styles.timelineDate}}>Friday March 13, 8 AM</Text>
-      {/* <FlightActivity/> */}
-      {activityComponents}
-      {/* <Activity 
-        backgroundColor={'#65B888'} 
-        sideIconSource={require('../../assets/map.png')}
-        title={'Train to Milan City Center'}/>
-      <Activity 
-        backgroundColor={'#BB6BD9'} 
-        sideIconLarge={true}
-        sideIconSource={require('../../assets/meatloaf.png')}
-        title={'Dinner at Luogi di Aimo'}/>
-      <HotelActivity withImage={true}/> */}
-    </View>;
-    const days = [day];
+  
+    // const day = 
+    // <View key={1} style={{marginBottom: hp(3)}}>
+    //   <Text style={{...styles.details, ...styles.timelineDate}}>Friday March 13, 8 AM</Text>
+    //   {/* <FlightActivity/> */}
+    //   {activityComponents}
+    //   {/* <Activity 
+    //     backgroundColor={'#65B888'} 
+    //     sideIconSource={require('../../assets/map.png')}
+    //     title={'Train to Milan City Center'}/>
+    //   <Activity 
+    //     backgroundColor={'#BB6BD9'} 
+    //     sideIconLarge={true}
+    //     sideIconSource={require('../../assets/meatloaf.png')}
+    //     title={'Dinner at Luogi di Aimo'}/>
+    //   <HotelActivity withImage={true}/> */}
+    // </View>;
+    // const days = [day];
 
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -78,11 +65,11 @@ export default class Itinerary extends Component {
               <Text style={styles.details}>Friday Mar 13 - Sunday Mar 22</Text>
             </View>
           </View>
-          
-          <View style={styles.timeline}>
-            {days}
-          </View>
+
+        <View style={styles.timeline}>
+          {dayComponents}
         </View>
+      </View>
       </ScrollView>
     );
   }
@@ -99,10 +86,7 @@ const styles = StyleSheet.create({
       flex: 1,
       flexDirection: 'row',
     },
-    details: {
-      color: gray,
-      fontSize: hp(bodyStandardSize)
-    },
+    details: detailsStyle,
     header: {
       marginBottom: hp(4)
     },
@@ -127,8 +111,5 @@ const styles = StyleSheet.create({
     },
     timeline: {
       marginBottom: -hp(3),
-    },
-    timelineDate: {
-      paddingLeft: hp(1.5),
     },
 });
