@@ -6,8 +6,40 @@ const getActivity = async (activityId) => {
     return activity.fields;
 }
 
-/** Gets the list of activities for a certain trip. */
-exports.activityList = async (req, res) => {
+/** Returns the date without the time of day. */
+const strippedDate = (date) => {
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getYear();
+    return new Date(year, month, day);
+}
+
+const groupActivitiesByDay = (activities) => {
+    let days = [];
+    if (!activities) {
+        return days;
+    }
+
+    let currentDay = [];
+    let currentDate = strippedDate(new Date(activities[0].start_time));
+    for (const activity of activities) {
+        const activityDate = strippedDate(new Date(activity.start_time));
+        if (activityDate.getTime() > currentDate.getTime()) {
+            // Push old day of activities into the group of days.
+            days.push(currentDay);
+
+            // Instantiate new group of days.
+            currentDay = [];
+            currentDate = activityDate;
+        }
+        currentDay.push(activity);
+    }
+    days.push(currentDay);
+    return days;
+}
+
+/** Lists the of activities for a certain trip grouped by day. */
+exports.activityList = async (req, res, next) => {
     const tripId = req.params.trip_id || 'recuKM4pqk1lcF0te';
 
     try {
@@ -23,15 +55,16 @@ exports.activityList = async (req, res) => {
                 activities.push(activity);
             }
         }
-
+        
         // Sort activities by start time.
         activities.sort((activityA, activityB) => {
             const startTimeA = new Date(activityA.start_time);
             const startTimeB = new Date(activityB.start_time);
             return startTimeA.getTime() - startTimeB.getTime();
-        });
+        });        
 
-        res.send(activities);
+        const activityDays = groupActivitiesByDay(activities);
+        res.send(activityDays);
     } catch (error) {
         res.status(500).send(error);
     }
