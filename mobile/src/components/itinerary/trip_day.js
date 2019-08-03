@@ -32,7 +32,7 @@ export default class TripDay extends Component {
       switch(activity.type) {
         case ACTIVITY_TYPE.FLIGHT: {
           activityComponents.push(
-            <FlightActivity key={ind}/>);
+            <FlightActivity title={activity.title} key={ind}/>);
           break;
         }
         default: {
