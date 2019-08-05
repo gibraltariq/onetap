@@ -24,7 +24,6 @@ export default class Itinerary extends Component {
   }
 
   render() {
-    console.log(`Rendering`);
     let dayComponents = [];
     for (let dayIndex = 0; dayIndex < this.state.activityDays.length; dayIndex++) {
       const activities = this.state.activityDays[dayIndex];

@@ -17,10 +17,10 @@ export default class FlightActivity extends Component<Props> {
         title={this.props.title}
         topImage={require('../../assets/plane.png')}
         details={
-            <View style={styles.activityDetails}>
-                <Text style={styles.activityDetail}>8 AM (PST) - 9 PM (CEST)</Text>
-                <Text style={styles.activityDetail}>$800</Text>
-            </View>
+          <View style={styles.activityDetails}>
+              <Text style={styles.activityDetail}>8 AM (PST) - 9 PM (CEST)</Text>
+              <Text style={styles.activityDetail}>$800</Text>
+          </View>
         }
       />
     );

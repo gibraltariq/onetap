@@ -11,6 +11,9 @@ const ACTIVITY_TYPE = {
   FLIGHT: 'flight',
 };
 
+const DAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const MONTH = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
 export default class TripDay extends Component {
   static propTypes  = {
     activities: PropTypes.array,
@@ -24,10 +27,16 @@ export default class TripDay extends Component {
     super(props);
   }
 
+  getDayStringFromDate = (time) => {
+    const date = new Date(time);
+    return `${DAY[date.getDay()]} ${MONTH[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+  }
+
   render() {
     const {activities} = this.props;
     let activityComponents = [];
     for (let ind = 0; ind < activities.length; ind++) {
+      // console.log(`Looping through a set of activities`);
       const activity = this.props.activities[ind];
       switch(activity.type) {
         case ACTIVITY_TYPE.FLIGHT: {
@@ -43,9 +52,12 @@ export default class TripDay extends Component {
       }
     }
 
+    const tripDayDate = this.props.activities.length > 0 ? 
+      this.getDayStringFromDate(this.props.activities[0].start_time) : '';
+
     return (
       <View style={{marginBottom: hp(3)}}>
-          <Text style={{...styles.details, ...styles.timelineDate}}>Friday March 13, 8 AM</Text>
+          <Text style={{...styles.details, ...styles.timelineDate}}>{tripDayDate}</Text>
           {activityComponents}
       </View>
     );
