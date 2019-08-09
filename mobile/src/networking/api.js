@@ -16,10 +16,9 @@ export const submitContact = async (name, phoneNumber) => {
 }
 
 export const getTrip = async () => {
-    const tripId = 'recuKM4pqk1lcF0te';
-    const tripURL = 'http://localhost:3000/trip/' + tripId;
+    const tripURL = 'http://localhost:3000/trip/' + 'recuKM4pqk1lcF0te';
     try {
-        let response = await fetch('http://localhost:3000/trip/recuKM4pqk1lcF0te', {
+        let response = await fetch(tripURL, {
             method: 'GET',
         });
         if (!response.ok) throw new Error(response.status);

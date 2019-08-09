@@ -9,7 +9,6 @@ import HotelActivity from './hotel_activity';
 import TripDay from './trip_day';
 import {getTrip} from '../../networking/api';
 
-// type State = { activityDays: any[] };
 export default class Itinerary extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +18,8 @@ export default class Itinerary extends Component {
   }
 
   componentDidMount() {
-    // TODO: what really needs to issue the request is the link given to a user.
+    // console.log(`Here is the url ${Expo.Linking.makeUrl('itinerary', {tripId: '2222'})}`);
+
     getTrip().then((activityDays) => this.setState({activityDays}));
   }
 
@@ -55,7 +55,7 @@ export default class Itinerary extends Component {
           <View style={styles.headerTop}>
               <Image style={styles.headerPhoto} source={require('../../assets/sunUmbrella.png')}/>
               <Text style={styles.title}>
-                  Our Italy itenirary for you Doofiyya
+                  Our Italy itinerary for you Doofiyya
               </Text>
             </View>
             <View style={styles.headerDetails}>
