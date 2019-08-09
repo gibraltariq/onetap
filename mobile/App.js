@@ -20,10 +20,22 @@ const AppNavigator = createStackNavigator(
 const AppContainer = createAppContainer(AppNavigator);
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tripId: undefined
+    };
+  }
+
   processURLEvent = (event) => this.processURL(event.url);
 
   processURL = (url) => {
     const {path, queryParams} = Expo.Linking.parse(url);
+    const tripId = queryParams.tripId;
+
+    if (path === 'itinerary' && tripId) {
+      this.setState({tripId})
+    }
     // console.log(`Here is the path ${JSON.stringify(path)} and queryParams ${JSON.stringify(queryParams)}`);
   };
 
@@ -40,9 +52,9 @@ export default class App extends Component {
   }
 
   render() {
+    // TOOD: Wait for deep link processing before loading AppContainer.
     return (
-      // <AppContainer />
-      <Itinerary />
+      this.state.tripId ? <Itinerary tripId={this.state.tripId}/> : <AppContainer/>
     );
   }
 }

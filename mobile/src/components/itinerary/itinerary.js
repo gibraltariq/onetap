@@ -6,10 +6,15 @@ import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-nativ
 import Activity from './activity';
 import FlightActivity from './flight_activity';
 import HotelActivity from './hotel_activity';
+import PropTypes from 'prop-types';
 import TripDay from './trip_day';
 import {getTrip} from '../../networking/api';
 
 export default class Itinerary extends Component {
+  static propTypes  = {
+    tripId: PropTypes.string.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +25,7 @@ export default class Itinerary extends Component {
   componentDidMount() {
     // console.log(`Here is the url ${Expo.Linking.makeUrl('itinerary', {tripId: '2222'})}`);
 
-    getTrip().then((activityDays) => this.setState({activityDays}));
+    getTrip(this.props.tripId).then((activityDays) => this.setState({activityDays}));
   }
 
   render() {
