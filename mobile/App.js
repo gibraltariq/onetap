@@ -36,7 +36,6 @@ export default class App extends Component {
     if (path === 'itinerary' && tripId) {
       this.setState({tripId})
     }
-    // console.log(`Here is the path ${JSON.stringify(path)} and queryParams ${JSON.stringify(queryParams)}`);
   };
 
   componentDidMount() {
@@ -52,7 +51,7 @@ export default class App extends Component {
   }
 
   render() {
-    // TOOD: Wait for deep link processing before loading AppContainer.
+    // TOOD: Explicitly wait for deep link processing before loading AppContainer.
     return (
       this.state.tripId ? <Itinerary tripId={this.state.tripId}/> : <AppContainer/>
     );
