@@ -1,3 +1,6 @@
+import getEnvVars from '../environment';
+const {apiURL} = getEnvVars();
+
 export const submitContact = async (name, phoneNumber) => {
     try {
         let response = await fetch('http://localhost:3000/contact', {
@@ -16,7 +19,7 @@ export const submitContact = async (name, phoneNumber) => {
 }
 
 export const getTrip = async (tripId) => {
-    const tripURL = 'http://localhost:3000/trip/' + tripId;
+    const tripURL = apiURL + '/trip/' + tripId;
     try {
         let response = await fetch(tripURL, {
             method: 'GET',
