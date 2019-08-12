@@ -25,6 +25,18 @@
     "ios": {
       "supportsTablet": true
     },
-    "scheme": "onetap"
+    "scheme": "onetap",
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "onetap-r0",
+            "project": "onetap-mobile",
+            "authToken": "ca3effc0ad214c2eaec5c708d20262d622320aae3f164a3199984be4f6171379"
+          }
+        }
+      ]
+    }
   }
 }
