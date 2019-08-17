@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {createAppContainer, createStackNavigator} from "react-navigation";
 
 import Confirmation from './src/components/confirmation/confirmation';
+import {Linking as ExpoLinking} from 'expo';
 import Itinerary from './src/components/itinerary/itinerary';
-import {Linking} from 'react-native';
+import {Linking as ReactLinking} from 'react-native';
 import Sentry from 'sentry-expo';
 import SubmitContact from './src/components/submit_contact/submit_contact';
 
@@ -37,7 +38,7 @@ export default class App extends Component {
   processURLEvent = (event) => this.processURL(event.url);
 
   processURL = (url) => {
-    const {path, queryParams} = Expo.Linking.parse(url);
+    const {path, queryParams} = ExpoLinking.parse(url);
     const tripId = queryParams.tripId;
 
     if (path === 'itinerary' && tripId) {
@@ -47,14 +48,14 @@ export default class App extends Component {
 
   installDeepLinkHandlers = () => {
     // Handling deep links from a backgrounded state.
-    Linking.addEventListener('url', this.processURLEvent);
+    ReactLinking.addEventListener('url', this.processURLEvent);
 
     // Handling deep links from a non-init state.
-    Linking.getInitialURL().then((url) => this.processURL(url))
+    ReactLinking.getInitialURL().then((url) => this.processURL(url))
   }
 
   uninstallDeepLinkHandlers = () => {
-    Linking.removeEventListener('url', this.processURLEvent);
+    ReactLinking.removeEventListener('url', this.processURLEvent);
   }
 
   componentDidMount() {
