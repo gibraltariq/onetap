@@ -4,8 +4,7 @@ import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-nativ
 
 import Activity from './activity';
 
-type Props = {};
-export default class FlightActivity extends Component<Props> {
+export default class FlightActivity extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -16,6 +15,7 @@ export default class FlightActivity extends Component<Props> {
       <Activity
         title={this.props.title}
         topImage={require('../../assets/plane.png')}
+        infoLink={this.props.infoLink}
         details={
           <View style={styles.activityDetails}>
               <Text style={styles.activityDetail}>8 AM (PST) - 9 PM (CEST)</Text>

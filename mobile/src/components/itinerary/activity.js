@@ -11,6 +11,7 @@ export default class Activity extends Component {
     backgroundColor: PropTypes.string,
     topImage: PropTypes.number,
     title: PropTypes.string.isRequired,
+    infoLink: PropTypes.string,
   }
 
   static defaultProps = {
@@ -22,8 +23,8 @@ export default class Activity extends Component {
     this.state = {};
   }
 
-  _openActivityURL = () => {
-    WebBrowser.openBrowserAsync('https://expo.io');
+  _openInfoLink = () => {
+    WebBrowser.openBrowserAsync(this.props.infoLink);
   }
 
   render() {
@@ -46,9 +47,13 @@ export default class Activity extends Component {
     );
 
     return (
-      <TouchableHighlight style={{...styles.container, backgroundColor}} onPress={this._openActivityURL}>
-        {childComponents}
-      </TouchableHighlight>
+      this.props.infoLink ? 
+        <TouchableHighlight style={{...styles.container, backgroundColor}} onPress={this._openInfoLink}>
+          {childComponents}
+        </TouchableHighlight> :
+        <View style={{...styles.container, backgroundColor}}>
+          {childComponents}
+        </View>
     );
   }
 }
