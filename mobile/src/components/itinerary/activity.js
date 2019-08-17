@@ -1,4 +1,6 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import * as WebBrowser from 'expo-web-browser';
+
+import {Image, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 import React, {Component} from 'react';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
@@ -18,6 +20,10 @@ export default class Activity extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  _openActivityURL = () => {
+    WebBrowser.openBrowserAsync('https://expo.io');
   }
 
   render() {
@@ -40,9 +46,9 @@ export default class Activity extends Component {
     );
 
     return (
-      <View style={{...styles.container, backgroundColor}}>
+      <TouchableHighlight style={{...styles.container, backgroundColor}} onPress={this._openActivityURL}>
         {childComponents}
-      </View>
+      </TouchableHighlight>
     );
   }
 }
