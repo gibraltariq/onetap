@@ -19,7 +19,7 @@ export default class FlightActivity extends Component {
         details={
           <View style={styles.activityDetails}>
               <Text style={styles.activityDetail}>8 AM (PST) - 9 PM (CEST)</Text>
-              <Text style={styles.activityDetail}>$800</Text>
+              <Text style={styles.activityDetail}>${this.props.cost}</Text>
           </View>
         }
       />
