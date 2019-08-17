@@ -37,15 +37,21 @@ export default class TripDay extends Component {
     let activityComponents = [];
     for (let ind = 0; ind < activities.length; ind++) {
       const activity = this.props.activities[ind];
+      const activityProps = {
+        key: ind,
+        title: activity.title,
+        infoLink: activity.infoLink,
+      };
+
       switch(activity.type) {
         case ACTIVITY_TYPE.FLIGHT: {
           activityComponents.push(
-            <FlightActivity key={ind} title={activity.title} infoLink={this.props.infoLink}/>);
+            <FlightActivity {...activityProps}/>);
           break;
         }
         default: {
           activityComponents.push(
-            <Activity key={ind} title={activity.title} infoLink={this.props.infoLink}/>);
+            <Activity {...activityProps}/>);
           break;
         }
       }
