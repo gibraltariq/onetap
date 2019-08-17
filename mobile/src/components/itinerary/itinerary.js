@@ -23,8 +23,6 @@ export default class Itinerary extends Component {
   }
 
   componentDidMount() {
-    // console.log(`Here is the url ${Expo.Linking.makeUrl('itinerary', {tripId: '2222'})}`);
-
     getTrip(this.props.tripId).then((activityDays) => this.setState({activityDays}));
   }
 

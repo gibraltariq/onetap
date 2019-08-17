@@ -7,8 +7,8 @@ const localhost =
 
 const ENV = {
  dev: {
-   apiURL: localhost,
    // Add API keys here
+   apiURL: localhost,
  },
  staging: {
    apiURL: '[your.staging.api.here]',
@@ -26,7 +26,7 @@ const getEnvVars = (env = Constants.manifest.releaseChannel) => {
    return ENV.dev;
  } else if (env === 'staging') {
    return ENV.staging;
- } else if (env === 'prod') {
+ } else {
    return ENV.prod;
  }
 };

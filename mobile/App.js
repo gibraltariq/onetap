@@ -67,7 +67,6 @@ export default class App extends Component {
 
   render() {
     // TOOD: Explicitly wait for deep link processing before loading AppContainer.
-    Sentry.captureMessage(`Here is proper url and path ${Expo.Linking.makeUrl('itinerary', {tripId: 'recuKM4pqk1lcF0te'})}`);
     return (
       this.state.tripId ? <Itinerary tripId={this.state.tripId}/> : <AppContainer/>
     );
