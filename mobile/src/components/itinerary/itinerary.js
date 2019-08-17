@@ -23,7 +23,11 @@ export default class Itinerary extends Component {
   }
 
   componentDidMount() {
-    getTrip(this.props.tripId).then((activityDays) => this.setState({activityDays}));
+    getTrip(this.props.tripId).then((activityDays) => {
+      if (activityDays) {
+        this.setState({activityDays});
+      }
+    });
   }
 
   render() {
@@ -33,24 +37,6 @@ export default class Itinerary extends Component {
       dayComponents.push(<TripDay activities={activities} key={dayIndex}/>);
     }
   
-    // const day = 
-    // <View key={1} style={{marginBottom: hp(3)}}>
-    //   <Text style={{...styles.details, ...styles.timelineDate}}>Friday March 13, 8 AM</Text>
-    //   {/* <FlightActivity/> */}
-    //   {activityComponents}
-    //   {/* <Activity 
-    //     backgroundColor={'#65B888'} 
-    //     sideIconSource={require('../../assets/map.png')}
-    //     title={'Train to Milan City Center'}/>
-    //   <Activity 
-    //     backgroundColor={'#BB6BD9'} 
-    //     sideIconLarge={true}
-    //     sideIconSource={require('../../assets/meatloaf.png')}
-    //     title={'Dinner at Luogi di Aimo'}/>
-    //   <HotelActivity withImage={true}/> */}
-    // </View>;
-    // const days = [day];
-
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>

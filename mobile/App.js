@@ -30,7 +30,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tripId: undefined
+      tripId: '',
     };
   }
 
@@ -68,6 +68,7 @@ export default class App extends Component {
   render() {
     // TOOD: Explicitly wait for deep link processing before loading AppContainer.
     return (
+      // <Itinerary tripId={this.state.tripId}/>
       this.state.tripId ? <Itinerary tripId={this.state.tripId}/> : <AppContainer/>
     );
   }

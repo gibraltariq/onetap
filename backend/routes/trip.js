@@ -8,8 +8,7 @@ const activityController = require('../controllers/activityController');
 router.get('/:trip_id', activityController.activityList);
 
 router.get('/', (req, res) => {
-    res.send('You are GETing.');
+    res.status(400).send('Trip id is required');
 });
-
 
 module.exports = router;
