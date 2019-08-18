@@ -18,7 +18,8 @@ export default class Itinerary extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activityDays: []
+      activityDays: [],
+      title: 'Loading itinerary...'
     };
   }
 
@@ -43,9 +44,7 @@ export default class Itinerary extends Component {
         <View style={styles.header}>
           <View style={styles.headerTop}>
               <Image style={styles.headerPhoto} source={require('../../assets/sunUmbrella.png')}/>
-              <Text style={styles.title}>
-                  Our Italy itinerary for you Doofiyya
-              </Text>
+              <Text style={styles.title}>{this.state.title} </Text>
             </View>
             <View style={styles.headerDetails}>
               <Text style={styles.details}>2 people</Text>
