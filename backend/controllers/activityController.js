@@ -40,9 +40,10 @@ const groupActivitiesByDay = (activities) => {
 
 /** Lists the of activities for a certain trip grouped by day. */
 exports.activityList = async (req, res, next) => {
+    const activityIds = req.activityIds; 
+    let activities = [];
+
     try {
-        const activityIds = req.activityIds; 
-        let activities = [];
         for (const activityId of activityIds) {
             let activity = await getActivity(activityId);
 
@@ -62,8 +63,8 @@ exports.activityList = async (req, res, next) => {
 
         const activityDays = groupActivitiesByDay(activities);
         req.activityDays = activityDays;
-        res.send(activityDays);
+        next();
     } catch (error) {
-        res.status(500).send(error);
+        next(error);
     }
 };
