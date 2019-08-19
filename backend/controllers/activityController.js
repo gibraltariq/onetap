@@ -40,11 +40,8 @@ const groupActivitiesByDay = (activities) => {
 
 /** Lists the of activities for a certain trip grouped by day. */
 exports.activityList = async (req, res, next) => {
-    const tripId = req.params.trip_id || 'recuKM4pqk1lcF0te';
-
     try {
-        const tripRecord = await airtable('Trip').find(tripId);
-        const activityIds = tripRecord.fields.activities;
+        const activityIds = req.activityIds; 
         let activities = [];
         for (const activityId of activityIds) {
             let activity = await getActivity(activityId);
@@ -64,6 +61,7 @@ exports.activityList = async (req, res, next) => {
         });        
 
         const activityDays = groupActivitiesByDay(activities);
+        req.activityDays = activityDays;
         res.send(activityDays);
     } catch (error) {
         res.status(500).send(error);
