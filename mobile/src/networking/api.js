@@ -17,7 +17,7 @@ export const submitContact = async (name, phoneNumber) => {
         } 
         return response;
     } catch (error) {
-        console.log(`Bad contact request ${JSON.stringify(error)}`)
+        console.error(error);
     }
 }
 
@@ -30,8 +30,10 @@ export const getTrip = async (tripId) => {
         if (!response.ok) {
             console.log(`Bad trip request ${JSON.stringify(response)}`);
         }
-        return response.json();
+        const {tripTitle, activityDays} = await response.json();
+        return {tripTitle, activityDays};
     } catch (error) {
-        console.log(`Bad trip request ${JSON.stringify(error)}`);
+        // Use console.error and not log to clearly see errors in development.
+        console.error(error);
     }
 }

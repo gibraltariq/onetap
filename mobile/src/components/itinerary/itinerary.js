@@ -24,9 +24,9 @@ export default class Itinerary extends Component {
   }
 
   componentDidMount() {
-    getTrip(this.props.tripId).then((activityDays) => {
-      if (activityDays) {
-        this.setState({activityDays});
+    getTrip(this.props.tripId).then(({tripTitle, activityDays}) => {
+      if (tripTitle && activityDays) {
+        this.setState({activityDays, title: tripTitle});
       }
     });
   }
