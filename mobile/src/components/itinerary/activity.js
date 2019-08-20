@@ -1,3 +1,4 @@
+import * as SMS from 'expo-sms';
 import * as WebBrowser from 'expo-web-browser';
 
 import {Image, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
@@ -20,11 +21,31 @@ export default class Activity extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      smsIsAvailable: false,
+    };
   }
 
   _openInfoLink = () => {
     WebBrowser.openBrowserAsync(this.props.infoLink);
+  }
+
+  _openModifyActivityMessage = async () => {
+    if (this.state.smsIsAvailable) {
+      const { result } = await SMS.sendSMSAsync(
+        ['0123456789', '9876543210'],
+        'My sample HelloWorld message'
+      );
+      console.log(`Here is the result ${result}`);
+    } else {
+      // TODO: Gracefully fail.
+      console.log(`No SMS service on this device.`);
+    }
+  }
+
+  componentDidMount = async () => {
+    let smsIsAvailable = await SMS.isAvailableAsync();
+    this.setState({smsIsAvailable});
   }
 
   render() {
@@ -47,8 +68,8 @@ export default class Activity extends Component {
     );
 
     return (
-      this.props.infoLink ?
-        <TouchableHighlight style={{...styles.container, backgroundColor}} onPress={this._openInfoLink}>
+      this.props.infoLink ? 
+        <TouchableHighlight style={{...styles.container, backgroundColor}} onPress={this._openModifyActivityMessage}>
           {childComponents}
         </TouchableHighlight> :
         <View style={{...styles.container, backgroundColor}}>

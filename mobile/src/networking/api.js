@@ -33,7 +33,7 @@ export const getTrip = async (tripId) => {
         const {tripTitle, activityDays} = await response.json();
         return {tripTitle, activityDays};
     } catch (error) {
-        // Use console.error and not log to clearly see errors in development.
+        // Use console.error and not .log to clearly see errors in development.
         console.error(error);
     }
 }
