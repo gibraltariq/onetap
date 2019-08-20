@@ -47,7 +47,7 @@ export default class Activity extends Component {
     );
 
     return (
-      this.props.infoLink ? 
+      this.props.infoLink ?
         <TouchableHighlight style={{...styles.container, backgroundColor}} onPress={this._openInfoLink}>
           {childComponents}
         </TouchableHighlight> :
