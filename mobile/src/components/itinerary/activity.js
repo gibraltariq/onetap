@@ -1,11 +1,16 @@
 import * as SMS from 'expo-sms';
 import * as WebBrowser from 'expo-web-browser';
 
-import {Image, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import PropTypes from 'prop-types';
+import {TouchableHighlight} from 'react-native-gesture-handler';
+import getEnvVars from '../../environment';
+
+const {twilioNumber} = getEnvVars();
+
 
 export default class Activity extends Component {
   static propTypes  = {
@@ -33,10 +38,9 @@ export default class Activity extends Component {
   _openModifyActivityMessage = async () => {
     if (this.state.smsIsAvailable) {
       const { result } = await SMS.sendSMSAsync(
-        ['0123456789', '9876543210'],
-        'My sample HelloWorld message'
+        twilioNumber,
+        `I\'d like to remove this activity: \"${this.props.title}\"`
       );
-      console.log(`Here is the result ${result}`);
     } else {
       // TODO: Gracefully fail.
       console.log(`No SMS service on this device.`);
@@ -68,13 +72,13 @@ export default class Activity extends Component {
     );
 
     return (
-      this.props.infoLink ? 
-        <TouchableHighlight style={{...styles.container, backgroundColor}} onPress={this._openModifyActivityMessage}>
+        this.props.infoLink? 
+          <TouchableHighlight style={{...styles.container, backgroundColor}} onPress={this._openInfoLink} onLongPress={this._openModifyActivityMessage}>
           {childComponents}
-        </TouchableHighlight> :
-        <View style={{...styles.container, backgroundColor}}>
-          {childComponents}
-        </View>
+          </TouchableHighlight> :
+          <View style={{...styles.container, backgroundColor}}>
+            {childComponents}
+          </View>
     );
   }
 }
