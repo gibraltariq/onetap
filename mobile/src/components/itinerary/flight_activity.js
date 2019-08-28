@@ -17,12 +17,8 @@ export default class FlightActivity extends Component {
         title={this.props.title}
         topImage={require('../../assets/plane.png')}
         infoLink={this.props.infoLink}
-        details={
-          <View style={styles.activityDetails}>
-              <Text style={styles.activityDetail}>8 AM (PST) - 9 PM (CEST)</Text>
-              <Text style={styles.activityDetail}>${this.props.cost}</Text>
-          </View>
-        }
+        detail1={'Bar Airways'}
+        detail2={`$${this.props.cost}`}
       />
     );
   }

@@ -7,6 +7,7 @@ import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-nativ
 
 import PropTypes from 'prop-types';
 import {TouchableHighlight} from 'react-native-gesture-handler';
+import { bodyStandardSize } from '../common';
 import getEnvVars from '../../environment';
 
 const {twilioNumber} = getEnvVars();
@@ -65,9 +66,9 @@ export default class ActivityV2 extends Component {
         <Image style={styles.iconImage} source={this.props.topImage}/> 
         <View style={styles.mainContent}>
           <Text style={styles.title}>{this.props.title}</Text>
-          {sideIcon}
+          {this.props.detail1 && <Text style={styles.detail}>{this.props.detail1}</Text>}
+          {this.props.detail2 && <Text style={styles.detail}>{this.props.detail2}</Text>}
         </View>
-        {/* {this.props.details} */}
       </View>
     );
 
@@ -105,11 +106,16 @@ const styles = StyleSheet.create({
       shadowColor: 'black',
       shadowOpacity: 0.25,
     },
+    detail: {
+      color: '#E6E6E6',
+      fontSize: hp(bodyStandardSize),
+    },
     mainContent: {
       alignItems: 'flex-start',
       flex: 1,
       justifyContent: 'space-between',
       maxWidth: wp(40),
+      minHeight: hp(10)
     },
     time: {
       color: 'white',
@@ -117,7 +123,6 @@ const styles = StyleSheet.create({
     title: {
       color: 'white',
       fontSize: hp(2.5),
-      textAlign: 'left',
     },
     sideIconLarge: {
       marginRight: -paddingHorizontal,
