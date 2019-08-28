@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import Activity from './activity';
+import ActivityV2 from './activity_copy';
 
 export default class FlightActivity extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ export default class FlightActivity extends Component {
 
   render() {
     return (
-      <Activity
+      <ActivityV2
         title={this.props.title}
         topImage={require('../../assets/plane.png')}
         infoLink={this.props.infoLink}

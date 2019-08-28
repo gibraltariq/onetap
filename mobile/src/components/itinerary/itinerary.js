@@ -1,6 +1,6 @@
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
-import {bodyStandardSize, detailsStyle, gray, lightGray, standardContainerPadding} from '../common';
+import {bodyStandardSize, darkGray, detailsStyle, gray, lightGray, standardContainerPadding} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import Activity from './activity';
@@ -19,7 +19,7 @@ export default class Itinerary extends Component {
     super(props);
     this.state = {
       activityDays: [],
-      title: 'Loading itinerary...'
+      title: 'Loading...'
     };
   }
 
@@ -47,8 +47,6 @@ export default class Itinerary extends Component {
               <Text style={styles.title}>{this.state.title} </Text>
             </View>
             <View style={styles.headerDetails}>
-              <Text style={styles.details}>2 people</Text>
-              <Text style={styles.details}>•</Text>
               <Text style={styles.details}>Friday Mar 13 - Sunday Mar 22</Text>
             </View>
           </View>
@@ -73,7 +71,10 @@ const styles = StyleSheet.create({
       flex: 1,
       flexDirection: 'row',
     },
-    details: detailsStyle,
+    details: {
+      color: gray,
+      fontSize: hp(2.5),
+    },
     header: {
       marginBottom: hp(4)
     },
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     },
     headerDetails: {
       flexDirection: 'row',
-      justifyContent: 'space-between'
+      justifyContent: 'center'
     },
     headerPhoto: {
       flex: 1,
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     },
     title: {
       flex: 2,
-      fontSize: hp(3),
+      fontSize: hp(3.5),
       lineHeight: hp(4),
       textAlign: 'right',
     },
