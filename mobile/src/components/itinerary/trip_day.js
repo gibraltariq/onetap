@@ -42,6 +42,7 @@ export default class TripDay extends Component {
         infoLink: activity.info_link,
         key: ind,
         title: activity.title,
+        startTime: activity.start_time,
       };
 
       switch(activity.type) {

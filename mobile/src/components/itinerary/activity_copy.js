@@ -18,6 +18,7 @@ export default class ActivityV2 extends Component {
     topImage: PropTypes.number,
     title: PropTypes.string.isRequired,
     infoLink: PropTypes.string,
+    startTime: PropTypes.string.isRequired,
   }
 
   static defaultProps = {
@@ -29,6 +30,14 @@ export default class ActivityV2 extends Component {
     this.state = {
       smsIsAvailable: false,
     };
+  }
+
+  _getHourString = (datetime) => {
+    const date = new Date(datetime)
+    const isPm = date.getHours() > 12;
+    const amPm = isPm ? 'PM': 'AM';
+    const hour = isPm ? date.getHours() - 12 : date.getHours();
+    return hour + ' ' + amPm;
   }
 
   _openInfoLink = () => {
@@ -62,7 +71,7 @@ export default class ActivityV2 extends Component {
 
     const childComponents = (
       <View style={{...styles.container, backgroundColor}}>
-        <Text style={styles.time}>10 AM</Text>
+        <Text style={styles.time}>{this._getHourString(this.props.startTime)}</Text>
         <Image style={styles.iconImage} source={this.props.topImage}/> 
         <View style={styles.mainContent}>
           <Text style={styles.title}>{this.props.title}</Text>

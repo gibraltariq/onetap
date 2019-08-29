@@ -14,9 +14,8 @@ export default class FlightActivity extends Component {
   render() {
     return (
       <ActivityV2
-        title={this.props.title}
+        {...this.props}
         topImage={require('../../assets/plane.png')}
-        infoLink={this.props.infoLink}
         detail1={'Bar Airways'}
         detail2={`$${this.props.cost}`}
       />
