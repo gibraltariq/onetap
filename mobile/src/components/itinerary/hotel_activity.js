@@ -15,7 +15,7 @@ export default class HotelActivity extends Component {
       <Activity
         topImage={require('../../assets/bed.png')}
         backgroundColor='#463429'
-        title='AirBnB with Scott Markle'
+        {...this.props}
       />
     );
   }

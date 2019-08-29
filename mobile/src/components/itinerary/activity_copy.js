@@ -75,8 +75,9 @@ export default class ActivityV2 extends Component {
         <Image style={styles.iconImage} source={this.props.topImage}/> 
         <View style={styles.mainContent}>
           <Text style={styles.title}>{this.props.title}</Text>
-          {this.props.detail1 && <Text style={styles.detail}>{this.props.detail1}</Text>}
-          {this.props.detail2 && <Text style={styles.detail}>{this.props.detail2}</Text>}
+          {this.props.details.map((detail, index)=> {
+            return <Text style={styles.detail} key={index}>{detail}</Text>; 
+          })}
         </View>
       </View>
     );

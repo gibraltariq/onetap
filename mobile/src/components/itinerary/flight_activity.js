@@ -16,8 +16,7 @@ export default class FlightActivity extends Component {
       <ActivityV2
         {...this.props}
         topImage={require('../../assets/plane.png')}
-        detail1={'Bar Airways'}
-        detail2={`$${this.props.cost}`}
+        details={['Bar Airways', `$${this.props.cost}`]}
       />
     );
   }
