@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
-import {bodyStandardSize, gray} from '../common';
+import {bodyPrimarySize, bodySecondarySize, gray} from '../common';
 
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
@@ -29,7 +29,7 @@ export default class FormField extends Component<Props> {
 const styles = StyleSheet.create({
   ask: {
     color: gray,
-    fontSize: hp(bodyStandardSize),
+    fontSize: hp(bodySecondarySize),
   },
   field: {
     marginTop: hp(3),
@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     color: gray,
-    fontSize: hp(2.5),
-    padding: hp(bodyStandardSize * 0.9),
-    marginTop: hp(bodyStandardSize),
+    fontSize: hp(bodyPrimarySize),
+    padding: hp(bodySecondarySize * 0.9),
+    marginTop: hp(bodySecondarySize),
   },
 });

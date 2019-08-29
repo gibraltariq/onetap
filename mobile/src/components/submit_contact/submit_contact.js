@@ -1,6 +1,6 @@
 import {KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {Component} from 'react';
-import {bodyLineHeight, bodyStandardSize, darkGray, gray, standardContainerPadding} from '../common';
+import {bodyLineHeight, bodyPrimarySize, bodySecondarySize, darkGray, gray, standardContainerPadding} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import FormField from './form_field';
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   },
   actionButtonText: {
     color: '#FFFFFF',
-    fontSize: hp(2.5), 
+    fontSize: hp(bodyPrimarySize), 
     letterSpacing: wp(1),
   },
   container: {
@@ -78,10 +78,10 @@ const styles = StyleSheet.create({
   },
   explanation: {
     color: gray,
-    fontSize: hp(bodyStandardSize),
+    fontSize: hp(bodySecondarySize),
     fontStyle: 'italic',
     lineHeight: hp(bodyLineHeight),
-    marginTop: hp(bodyStandardSize),
+    marginTop: hp(bodySecondarySize),
   },
   title: {
     color: darkGray,

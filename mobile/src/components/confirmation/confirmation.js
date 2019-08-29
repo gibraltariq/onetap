@@ -1,6 +1,6 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {Component} from 'react';
-import {bodyLargeSize, bodyLineHeight, darkGray, standardContainerPadding} from '../common';
+import {bodyLineHeight, bodyPrimarySize, darkGray, standardContainerPadding} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 type Props = {
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     },
     message: {
         color: darkGray,
-        fontSize: hp(bodyLargeSize),
+        fontSize: hp(bodyPrimarySize),
         lineHeight: hp(bodyLineHeight * 1.25),
         textAlign: 'center',
     },

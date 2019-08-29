@@ -1,11 +1,11 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
+import {bodyPrimarySize, bodySecondarySize, gray} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import Activity from './activity';
 import FlightActivity from './flight_activity';
 import PropTypes from 'prop-types';
-import {detailsStyle} from '../common';
 
 const ACTIVITY_TYPE = {
   FLIGHT: 'flight',
@@ -71,7 +71,10 @@ export default class TripDay extends Component {
 }
 
 const styles = StyleSheet.create({
-  details: detailsStyle,
+  details: {
+    color: gray,
+    fontSize: hp(bodySecondarySize)
+  },
   timelineDate: {
     paddingLeft: hp(1.5),
   },

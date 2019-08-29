@@ -3,11 +3,11 @@ import * as WebBrowser from 'expo-web-browser';
 
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
+import { bodyPrimarySize, bodySecondarySize, bodyTertiarySize } from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import PropTypes from 'prop-types';
 import {TouchableHighlight} from 'react-native-gesture-handler';
-import { bodyStandardSize } from '../common';
 import getEnvVars from '../../environment';
 
 const {twilioNumber} = getEnvVars();
@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
       shadowOpacity: 0.25,
     },
     detail: {
-      color: '#E6E6E6',
-      fontSize: hp(bodyStandardSize),
+      color: '#EFEFEF',
+      fontSize: hp(bodySecondarySize),
     },
     mainContent: {
       alignItems: 'flex-start',
@@ -119,10 +119,11 @@ const styles = StyleSheet.create({
     },
     time: {
       color: 'white',
+      fontSize: hp(bodyTertiarySize),
     },
     title: {
       color: 'white',
-      fontSize: hp(2.5),
+      fontSize: hp(bodyPrimarySize),
     },
     sideIconLarge: {
       marginRight: -paddingHorizontal,

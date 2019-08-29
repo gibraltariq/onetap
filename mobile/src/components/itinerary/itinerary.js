@@ -1,6 +1,6 @@
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
-import {bodyStandardSize, darkGray, detailsStyle, gray, lightGray, standardContainerPadding} from '../common';
+import {bodyPrimarySize, bodySecondarySize, darkGray, detailsStyle, gray, lightGray, standardContainerPadding} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import Activity from './activity';
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     },
     details: {
       color: gray,
-      fontSize: hp(2.5),
+      fontSize: hp(bodyPrimarySize),
     },
     header: {
       marginBottom: hp(4)

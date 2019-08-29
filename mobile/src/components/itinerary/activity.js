@@ -7,6 +7,7 @@ import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-nativ
 
 import PropTypes from 'prop-types';
 import {TouchableHighlight} from 'react-native-gesture-handler';
+import {bodyPrimarySize} from '../common';
 import getEnvVars from '../../environment';
 
 const {twilioNumber} = getEnvVars();
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
     },
     title: {
       color: 'white',
-      fontSize: hp(2.5),
+      fontSize: hp(bodyPrimarySize),
       textAlign: 'left',
     },
     titleBar: {
