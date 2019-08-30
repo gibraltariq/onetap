@@ -15,21 +15,9 @@ export default class FlightActivity extends Component {
     return (
       <ActivityV2
         {...this.props}
-        topImage={require('../../assets/plane.png')}
+        iconImage={require('../../assets/plane.png')}
         details={['Bar Airways', `$${this.props.cost}`]}
       />
     );
   }
 }
-
-const styles = StyleSheet.create({
-    activityDetail: {
-      fontSize: hp(1.75),
-      color: 'white',
-    },
-    activityDetails: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      marginTop: hp(0.75),
-    }
-});

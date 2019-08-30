@@ -2,9 +2,9 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
-import Activity from './activity';
+import ActivityV2 from './activity_copy';
 
-export default class HotelActivity extends Component {
+export default class LodgingActivity extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -12,10 +12,11 @@ export default class HotelActivity extends Component {
 
   render() {
     return (
-      <Activity
-        topImage={require('../../assets/bed.png')}
-        backgroundColor='#463429'
+      <ActivityV2
         {...this.props}
+        backgroundColor='#463429'
+        details={[]}
+        iconImage={require('../../assets/bed.png')}
       />
     );
   }

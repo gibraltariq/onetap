@@ -3,9 +3,6 @@ import React, {Component} from 'react';
 import {bodyPrimarySize, bodySecondarySize, darkGray, detailsStyle, gray, lightGray, standardContainerPadding} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
-import Activity from './activity';
-import FlightActivity from './flight_activity';
-import HotelActivity from './hotel_activity';
 import PropTypes from 'prop-types';
 import TripDay from './trip_day';
 import {getTrip} from '../../networking/api';

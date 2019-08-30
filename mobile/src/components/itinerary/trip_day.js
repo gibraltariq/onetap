@@ -5,10 +5,14 @@ import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-nativ
 
 import Activity from './activity';
 import FlightActivity from './flight_activity';
+import LodgingActivity from './lodging_activity';
 import PropTypes from 'prop-types';
 
 const ACTIVITY_TYPE = {
   FLIGHT: 'flight',
+  LODGING: 'lodging',
+  INDOOR: 'indoor',
+  OUTDOOR: 'outdoor',
 };
 
 const DAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -49,6 +53,11 @@ export default class TripDay extends Component {
         case ACTIVITY_TYPE.FLIGHT: {
           activityComponents.push(
             <FlightActivity {...activityProps}/>);
+          break;
+        }
+        case ACTIVITY_TYPE.LODGING: {
+          activityComponents.push(
+            <LodgingActivity {...activityProps}/>);
           break;
         }
         default: {

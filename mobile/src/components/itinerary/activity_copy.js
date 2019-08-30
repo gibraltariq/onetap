@@ -72,7 +72,7 @@ export default class ActivityV2 extends Component {
     const childComponents = (
       <View style={{...styles.container, backgroundColor}}>
         <Text style={styles.time}>{this._getHourString(this.props.startTime)}</Text>
-        <Image style={styles.iconImage} source={this.props.topImage}/> 
+        <Image style={styles.iconImage} source={this.props.iconImage}/> 
         <View style={styles.mainContent}>
           <Text style={styles.title}>{this.props.title}</Text>
           {this.props.details.map((detail, index)=> {
