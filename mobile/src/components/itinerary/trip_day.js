@@ -7,12 +7,14 @@ import ActivityV2 from './activity_copy';
 import FlightActivity from './flight_activity';
 import IndoorActivity from './indoor_activity';
 import LodgingActivity from './lodging_activity';
+import OutdoorActivity from './outdoor_activity';
 import PropTypes from 'prop-types';
 
 const ACTIVITY_TYPE = {
   FLIGHT: 'flight',
-  LODGING: 'lodging',
+  FOOD: 'food',
   INDOOR: 'indoor',
+  LODGING: 'lodging',
   OUTDOOR: 'outdoor',
 };
 
@@ -64,6 +66,11 @@ export default class TripDay extends Component {
         case ACTIVITY_TYPE.INDOOR: {
           activityComponents.push(
             <IndoorActivity {...activityProps}/>);
+          break;
+        }
+        case ACTIVITY_TYPE.OUTDOOR: {
+          activityComponents.push(
+            <OutdoorActivity {...activityProps}/>);
           break;
         }
         default: {
