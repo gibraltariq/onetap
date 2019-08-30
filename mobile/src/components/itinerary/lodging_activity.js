@@ -15,7 +15,6 @@ export default class LodgingActivity extends Component {
       <ActivityV2
         {...this.props}
         backgroundColor='#463429'
-        details={[]}
         iconImage={require('../../assets/bed.png')}
       />
     );

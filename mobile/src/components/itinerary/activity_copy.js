@@ -75,7 +75,7 @@ export default class ActivityV2 extends Component {
         <Image style={styles.iconImage} source={this.props.iconImage}/> 
         <View style={styles.mainContent}>
           <Text style={styles.title}>{this.props.title}</Text>
-          {this.props.details.map((detail, index)=> {
+          {this.props.details && this.props.details.map((detail, index)=> {
             return <Text style={styles.detail} key={index}>{detail}</Text>; 
           })}
         </View>
@@ -99,7 +99,7 @@ const paddingVertical = hp(1.5);
 
 const styles = StyleSheet.create({
     iconImage: {
-      height: hp(10),
+      height: hp(8),
       marginBottom: hp(1),
       resizeMode: 'contain',
       width: wp(15),
@@ -119,13 +119,13 @@ const styles = StyleSheet.create({
     detail: {
       color: '#EFEFEF',
       fontSize: hp(bodySecondarySize),
+      paddingTop: hp(1.25),
     },
     mainContent: {
       alignItems: 'flex-start',
       flex: 1,
       justifyContent: 'space-between',
       maxWidth: wp(40),
-      minHeight: hp(10)
     },
     time: {
       color: 'white',
