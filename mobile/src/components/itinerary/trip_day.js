@@ -5,6 +5,7 @@ import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-nativ
 
 import ActivityV2 from './activity_copy';
 import FlightActivity from './flight_activity';
+import FoodActivity from './food_activity';
 import IndoorActivity from './indoor_activity';
 import LodgingActivity from './lodging_activity';
 import OutdoorActivity from './outdoor_activity';
@@ -71,6 +72,11 @@ export default class TripDay extends Component {
         case ACTIVITY_TYPE.OUTDOOR: {
           activityComponents.push(
             <OutdoorActivity {...activityProps}/>);
+          break;
+        }
+        case ACTIVITY_TYPE.FOOD: {
+          activityComponents.push(
+            <FoodActivity {...activityProps}/>);
           break;
         }
         default: {
