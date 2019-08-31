@@ -3,15 +3,14 @@ import * as WebBrowser from 'expo-web-browser';
 
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
+import { bodyPrimarySize, bodySecondarySize, bodyTertiarySize } from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import PropTypes from 'prop-types';
 import {TouchableHighlight} from 'react-native-gesture-handler';
-import {bodyPrimarySize} from '../common';
 import getEnvVars from '../../environment';
 
 const {twilioNumber} = getEnvVars();
-
 
 export default class Activity extends Component {
   static propTypes  = {
@@ -19,6 +18,7 @@ export default class Activity extends Component {
     topImage: PropTypes.number,
     title: PropTypes.string.isRequired,
     infoLink: PropTypes.string,
+    startTime: PropTypes.string.isRequired,
   }
 
   static defaultProps = {
@@ -30,6 +30,14 @@ export default class Activity extends Component {
     this.state = {
       smsIsAvailable: false,
     };
+  }
+
+  _getHourString = (datetime) => {
+    const date = new Date(datetime)
+    const isPm = date.getHours() > 12;
+    const amPm = isPm ? 'PM': 'AM';
+    const hour = isPm ? date.getHours() - 12 : date.getHours();
+    return hour + ' ' + amPm;
   }
 
   _openInfoLink = () => {
@@ -62,22 +70,24 @@ export default class Activity extends Component {
     }
 
     const childComponents = (
-      <View>
-        {this.props.topImage ? <Image style={styles.topImage} source={this.props.topImage}/> : []}
-        <View style={styles.titleBar}>
+      <View style={{...styles.container, backgroundColor}}>
+        <Text style={styles.time}>{this._getHourString(this.props.startTime)}</Text>
+        <Image style={styles.iconImage} source={this.props.iconImage}/> 
+        <View style={styles.mainContent}>
           <Text style={styles.title}>{this.props.title}</Text>
-          {sideIcon}
+          {this.props.details && this.props.details.map((detail, index)=> {
+            return <Text style={styles.detail} key={index}>{detail}</Text>; 
+          })}
         </View>
-        {this.props.details}
       </View>
     );
 
     return (
         this.props.infoLink? 
-          <TouchableHighlight style={{...styles.container, backgroundColor}} onPress={this._openInfoLink} onLongPress={this._openModifyActivityMessage}>
+          <TouchableHighlight onPress={this._openInfoLink} onLongPress={this._openModifyActivityMessage}>
           {childComponents}
           </TouchableHighlight> :
-          <View style={{...styles.container, backgroundColor}}>
+          <View>
             {childComponents}
           </View>
     );
@@ -88,11 +98,17 @@ const paddingHorizontal = wp(4);
 const paddingVertical = hp(1.5);
 
 const styles = StyleSheet.create({
-    topImage: {
-      alignSelf: 'center',
+    iconImage: {
+      height: hp(8),
       marginBottom: hp(1),
+      resizeMode: 'contain',
+      width: wp(15),
     },
     container: {
+      alignItems: 'center',
+      borderRadius: wp(3),
+      flexDirection: 'row',
+      justifyContent: 'space-between',
       marginTop: hp(2),
       paddingHorizontal,
       paddingVertical,
@@ -100,18 +116,24 @@ const styles = StyleSheet.create({
       shadowColor: 'black',
       shadowOpacity: 0.25,
     },
+    detail: {
+      color: '#EFEFEF',
+      fontSize: hp(bodySecondarySize),
+      paddingTop: hp(1.25),
+    },
+    mainContent: {
+      alignItems: 'flex-start',
+      flex: 1,
+      justifyContent: 'space-between',
+      maxWidth: wp(40),
+    },
+    time: {
+      color: 'white',
+      fontSize: hp(bodyTertiarySize),
+    },
     title: {
       color: 'white',
       fontSize: hp(bodyPrimarySize),
-      textAlign: 'left',
-    },
-    titleBar: {
-      alignItems: 'center',
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-    },
-    sideIcon: {
     },
     sideIconLarge: {
       marginRight: -paddingHorizontal,

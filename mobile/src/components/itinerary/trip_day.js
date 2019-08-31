@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {bodyPrimarySize, bodySecondarySize, gray} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
-import ActivityV2 from './activity_copy';
+import Activity from './activity';
 import FlightActivity from './flight_activity';
 import FoodActivity from './food_activity';
 import IndoorActivity from './indoor_activity';
@@ -81,7 +81,7 @@ export default class TripDay extends Component {
         }
         default: {
           activityComponents.push(
-            <ActivityV2 {...activityProps}/>);
+            <Activity {...activityProps}/>);
           break;
         }
       }

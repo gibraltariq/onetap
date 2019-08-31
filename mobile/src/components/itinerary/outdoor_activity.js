@@ -2,7 +2,7 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
-import ActivityV2 from './activity_copy';
+import Activity from './activity';
 
 export default class OutdoorActivity extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export default class OutdoorActivity extends Component {
 
   render() {
     return (
-      <ActivityV2
+      <Activity
         {...this.props}
         backgroundColor='#3D5849'
         iconImage={require('../../assets/mountain.png')}
