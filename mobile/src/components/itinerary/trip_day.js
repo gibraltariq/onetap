@@ -1,3 +1,4 @@
+import {DAY, MONTH} from './constants';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
 import {bodyPrimarySize, bodySecondarySize, gray} from '../common';
@@ -18,9 +19,6 @@ const ACTIVITY_TYPE = {
   LODGING: 'lodging',
   OUTDOOR: 'outdoor',
 };
-
-const DAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const MONTH = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 export default class TripDay extends Component {
   static propTypes  = {

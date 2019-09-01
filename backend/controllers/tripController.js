@@ -19,6 +19,7 @@ exports.tripDetailGet = async (req, res, next) => {
 exports.tripFullGet = async(req, res) => {
     const activityDays = req.activityDays; 
     const tripTitle = req.tripTitle;
+
     try {
         res.send({tripTitle, activityDays});
     } catch (error) {
