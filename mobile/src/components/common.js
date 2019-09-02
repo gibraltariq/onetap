@@ -11,3 +11,9 @@ export const bodySecondarySize = bodyTertiarySize * 1.2; // Based on Apple secon
 export const bodyPrimarySize = bodySecondarySize * 1.13; // Based on Apple primary 17 pt font size.
 export const bodyLineHeight = bodySecondarySize * 1.5;
 export const standardContainerPadding = 7;
+
+/** Font sizes */
+export const textSmall = 12;
+export const textMedium = 16;
+export const textLarge = 20;
+export const textTitle = 24;

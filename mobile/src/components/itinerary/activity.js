@@ -3,7 +3,7 @@ import * as WebBrowser from 'expo-web-browser';
 
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
-import { bodyPrimarySize, bodySecondarySize, bodyTertiarySize } from '../common';
+import { bodyPrimarySize, bodySecondarySize, bodyTertiarySize, textLarge, textMedium } from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import PropTypes from 'prop-types';
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     },
     detail: {
       color: '#EFEFEF',
-      fontSize: hp(bodySecondarySize),
+      fontSize: textMedium,
       paddingTop: hp(1.25),
     },
     mainContent: {
@@ -129,11 +129,11 @@ const styles = StyleSheet.create({
     },
     time: {
       color: 'white',
-      fontSize: hp(bodyTertiarySize),
+      fontSize: textMedium,
     },
     title: {
       color: 'white',
-      fontSize: hp(bodyPrimarySize),
+      fontSize: textLarge,
     },
     sideIconLarge: {
       marginRight: -paddingHorizontal,

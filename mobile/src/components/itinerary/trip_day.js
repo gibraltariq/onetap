@@ -1,7 +1,7 @@
 import {DAY, MONTH} from './constants';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
-import {bodyPrimarySize, bodySecondarySize, gray} from '../common';
+import {bodyPrimarySize, bodySecondarySize, gray, textLarge, textMedium, textSmall} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import Activity from './activity';
@@ -90,7 +90,7 @@ export default class TripDay extends Component {
 
     return (
       <View style={{marginBottom: hp(3)}}>
-          <Text style={{...styles.details, ...styles.timelineDate}}>{tripDayDate}</Text>
+          <Text style={styles.date}>{tripDayDate}</Text>
           {activityComponents}
       </View>
     );
@@ -98,11 +98,10 @@ export default class TripDay extends Component {
 }
 
 const styles = StyleSheet.create({
-  details: {
+  date: {
     color: gray,
-    fontSize: hp(bodySecondarySize)
-  },
-  timelineDate: {
+    fontSize: textSmall,
     paddingLeft: hp(1.5),
+    textTransform: 'uppercase',
   },
 });

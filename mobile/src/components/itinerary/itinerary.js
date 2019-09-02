@@ -1,7 +1,7 @@
 import {DAY, MONTH} from './constants';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
-import {bodyPrimarySize, bodySecondarySize, darkGray, detailsStyle, gray, lightGray, standardContainerPadding} from '../common';
+import {gray, standardContainerPadding, textLarge, textTitle} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import PropTypes from 'prop-types';
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     },
     details: {
       color: gray,
-      fontSize: hp(bodyPrimarySize),
+      fontSize: textLarge,
     },
     header: {
       marginBottom: hp(4)
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     },
     title: {
       flex: 2,
-      fontSize: hp(3.5),
+      fontSize: textTitle,
       lineHeight: hp(4),
       textAlign: 'right',
     },
