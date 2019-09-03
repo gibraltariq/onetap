@@ -70,24 +70,29 @@ export default class Activity extends Component {
     }
 
     const childComponents = (
-      <View style={{...styles.container, backgroundColor}}>
+      <View style={styles.subContainer}>
         <Text style={styles.time}>{this._getHourString(this.props.startTime)}</Text>
-        <Image style={styles.iconImage} source={this.props.iconImage}/> 
+        <Image style={styles.iconImage} source={this.props.iconImage}/>
         <View style={styles.mainContent}>
           <Text style={styles.title}>{this.props.title}</Text>
           {this.props.details && this.props.details.map((detail, index)=> {
-            return <Text style={styles.detail} key={index}>{detail}</Text>; 
+            return <Text style={styles.detail} key={index}>{detail}</Text>;
           })}
         </View>
       </View>
     );
 
     return (
-        this.props.infoLink? 
-          <TouchableHighlight onPress={this._openInfoLink} onLongPress={this._openModifyActivityMessage}>
+        this.props.infoLink?
+          <TouchableHighlight
+            onPress={this._openInfoLink}
+            onLongPress={this._openModifyActivityMessage}
+            style={{...styles.container, backgroundColor}}
+            underlayColor={backgroundColor}
+            activeOpacity={0.4}>
           {childComponents}
           </TouchableHighlight> :
-          <View>
+          <View style={{...styles.container, backgroundColor}}>
             {childComponents}
           </View>
     );
@@ -105,16 +110,14 @@ const styles = StyleSheet.create({
       width: wp(15),
     },
     container: {
-      alignItems: 'center',
       borderRadius: wp(3),
-      flexDirection: 'row',
-      justifyContent: 'space-between',
       marginTop: hp(2),
       paddingHorizontal,
       paddingVertical,
       shadowOffset: {height: hp(0.5)},
       shadowColor: 'black',
       shadowOpacity: 0.25,
+      shadowRadius: wp(3),
     },
     detail: {
       color: '#EFEFEF',
@@ -126,6 +129,11 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'space-between',
       maxWidth: wp(40),
+    },
+    subContainer: {
+      alignItems: 'center',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
     },
     time: {
       color: 'white',
