@@ -26,6 +26,7 @@ export default class Itinerary extends Component {
       if (tripTitle && activityDays) {
         this.setState({activityDays, title: tripTitle});
       }
+      // TODO: Properly handle bad response.
     });
   }
 
