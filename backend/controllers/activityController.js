@@ -40,26 +40,21 @@ const groupActivitiesByDay = (activities) => {
 
 /** Lists the of activities for a certain trip grouped by day. */
 exports.activityList = async (req, res, next) => {
-    const activityIds = req.activityIds; 
-    let activities = [];
-
     try {
-        for (const activityId of activityIds) {
-            let activity = await getActivity(activityId);
+        const tripId = req.params.trip_id;
 
-            // Activity start_time is required. Really this should be in 
-            // Airtable but they don't support required fields.
-            if (activity.start_time) {
-                activities.push(activity);
-            }
-        }
-        
+        // Activity start_time is required. Really this should be in
+        // Airtable but they don't support required fields.
+        const activities = await airtable('Activities').select({
+            filterByFormula: `AND({trip_id}="${tripId}", NOT({start_time} = ''))`
+        }).all();
+
         // Sort activities by start time.
         activities.sort((activityA, activityB) => {
             const startTimeA = new Date(activityA.start_time);
             const startTimeB = new Date(activityB.start_time);
             return startTimeA.getTime() - startTimeB.getTime();
-        });        
+        });
 
         const activityDays = groupActivitiesByDay(activities);
         req.activityDays = activityDays;
