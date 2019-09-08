@@ -3,20 +3,12 @@ const router = express.Router();
 router.use(express.json());
 
 const Joi = require('@hapi/joi');
-const env = require('../env');
-// const airtable = require('../common').base;
-
-// Twilio API
-const client = require('twilio')(env.twilio_sid, env.twilio_key);
-
-// Airtable API
-var Airtable = require('airtable');
-var base = new Airtable({apiKey: env.airtable_key}).base('appVJIbLHJzjJsJps');
+const airtable = require('../common').base;
 
 router.post('/', (req, res) => {
     validateContactInfo(req.body).then(validatedBody => {
         const {name, phoneNumber} = validatedBody;
-        return base('User').create({
+        return airtable('User').create({
             "Name": name,
             "Phone Number": phoneNumber
         });
