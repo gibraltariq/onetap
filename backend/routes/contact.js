@@ -5,12 +5,19 @@ router.use(express.json());
 const Joi = require('@hapi/joi');
 const airtable = require('../common').base;
 
+const DEFAULT_PLANNER = {
+    "id": "invi5R3GB6iWlAsjX",
+    "email": "salmanrkh@gmail.com",
+    "name": "Salman",
+};
+
 router.post('/', (req, res) => {
     validateContactInfo(req.body).then(validatedBody => {
         const {name, phoneNumber} = validatedBody;
         return airtable('User').create({
-            "Name": name,
-            "Phone Number": phoneNumber
+           'Name': name,
+           'Phone Number': phoneNumber,
+           'Planner': DEFAULT_PLANNER,
         });
     }).then(() => res.sendStatus(200))
     .catch(error => {
