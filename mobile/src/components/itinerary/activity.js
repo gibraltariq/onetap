@@ -1,13 +1,15 @@
 import * as SMS from 'expo-sms';
 import * as WebBrowser from 'expo-web-browser';
 
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View, Animated} from 'react-native';
 import React, {Component} from 'react';
 import { bodyPrimarySize, bodySecondarySize, bodyTertiarySize, textLarge, textMedium } from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import PropTypes from 'prop-types';
-import {TouchableHighlight} from 'react-native-gesture-handler';
+import {RectButton, TouchableHighlight} from 'react-native-gesture-handler';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 import getEnvVars from '../../environment';
 
 const {twilioNumber} = getEnvVars();
@@ -30,6 +32,11 @@ export default class Activity extends Component {
     this.state = {
       smsIsAvailable: false,
     };
+  }
+
+  componentDidMount = async () => {
+    let smsIsAvailable = await SMS.isAvailableAsync();
+    this.setState({smsIsAvailable});
   }
 
   _getHourString = (datetime) => {
@@ -56,9 +63,24 @@ export default class Activity extends Component {
     }
   }
 
-  componentDidMount = async () => {
-    let smsIsAvailable = await SMS.isAvailableAsync();
-    this.setState({smsIsAvailable});
+  _renderRightActions = (progress, dragX) => {
+    const actionSize = 64;
+    const trans = progress.interpolate({
+      inputRange: [0, 1],
+      outputRange: [actionSize, 0],
+    });
+
+    return (
+      <View style={{ width: actionSize, flexDirection: 'row' }}>
+        <Animated.View style={{ flex: 1, transform: [{ translateX: trans }] }}>
+          <RectButton
+            style={styles.rightAction}
+            onPress={this._openModifyActivityMessage}>
+            <MaterialIcons name="edit" size={actionSize / 2} color="white" />
+          </RectButton>
+        </Animated.View>
+      </View>
+    );
   }
 
   render() {
@@ -82,19 +104,26 @@ export default class Activity extends Component {
       </View>
     );
 
+    swipeableElement = this.props.infoLink?
+      <TouchableHighlight
+        onPress={this._openInfoLink}
+        underlayColor='transparent'
+        activeOpacity={1}
+      >
+        {childComponents}
+      </TouchableHighlight> :
+      <View>
+        {childComponents}
+      </View>;
+
     return (
-        this.props.infoLink?
-          <TouchableHighlight
-            onPress={this._openInfoLink}
-            onLongPress={this._openModifyActivityMessage}
-            style={{...styles.container, backgroundColor}}
-            underlayColor={backgroundColor}
-            activeOpacity={0.4}>
-          {childComponents}
-          </TouchableHighlight> :
-          <View style={{...styles.container, backgroundColor}}>
-            {childComponents}
-          </View>
+      <Swipeable
+        renderRightActions={this._renderRightActions}
+        containerStyle={{...styles.container, backgroundColor}}
+        overshootRight={false}
+      >
+        {swipeableElement}
+      </Swipeable>
     );
   }
 }
@@ -129,6 +158,13 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'space-between',
       maxWidth: wp(40),
+    },
+    rightAction: {
+      alignItems: 'center',
+      backgroundColor: 'gray',
+      color: 'white',
+      flex: 1,
+      justifyContent: 'center',
     },
     subContainer: {
       alignItems: 'center',
