@@ -1,14 +1,14 @@
 import * as SMS from 'expo-sms';
 import * as WebBrowser from 'expo-web-browser';
 
-import {Image, StyleSheet, Text, View, Animated} from 'react-native';
+import {Animated, Image, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
-import { bodyPrimarySize, bodySecondarySize, bodyTertiarySize, textLarge, textMedium } from '../common';
-import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
-import { MaterialIcons } from '@expo/vector-icons';
-
-import PropTypes from 'prop-types';
 import {RectButton, TouchableHighlight} from 'react-native-gesture-handler';
+import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import {textLarge, textMedium} from '../common';
+
+import { MaterialIcons } from '@expo/vector-icons';
+import PropTypes from 'prop-types';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import getEnvVars from '../../environment';
 
@@ -55,7 +55,7 @@ export default class Activity extends Component {
     if (this.state.smsIsAvailable) {
       const { result } = await SMS.sendSMSAsync(
         twilioNumber,
-        `I\'d like to remove this activity: \"${this.props.title}\"`
+        `I\'d like to change this activity: \"${this.props.title}\"`
       );
     } else {
       // TODO: Gracefully fail.

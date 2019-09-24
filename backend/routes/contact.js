@@ -6,9 +6,9 @@ const Joi = require('@hapi/joi');
 const airtable = require('../common').base;
 
 const DEFAULT_PLANNER = {
-    "id": "invi5R3GB6iWlAsjX",
-    "email": "salmanrkh@gmail.com",
-    "name": "Salman",
+    "id": "usrzvformhSIDUbxg",
+    "email": "onetaptravel@outlook.com",
+    "name": "Onetap Travel",
 };
 
 router.post('/', (req, res) => {

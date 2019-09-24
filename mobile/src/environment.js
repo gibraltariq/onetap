@@ -9,15 +9,15 @@ const ENV = {
  dev: {
    // Add API keys here
    apiUrl: localhost,
-   twilioNumber: '+1500555000',
+   twilioNumber: '+15005550000',
  },
  staging: {
    apiUrl: '[your.staging.api.here]',
-   twilioNumber: '+1500555000',
+   twilioNumber: '+15005550000',
  },
  prod: {
    apiUrl: 'https://onetap-backend.tariqpatanam.now.sh',
-   twilioNumber: '+1500555000',
+   twilioNumber: '‭+1-201-220-3261‬',
  },
 };
 
