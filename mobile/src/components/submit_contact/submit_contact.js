@@ -12,14 +12,16 @@ export default class SubmitContact extends Component {
     this.state = {
       name: '',
       phoneNumber: '',
+      isLoading: false,
     };
   }
 
   submitContact(name, phoneNumber) {
+    this.setState({isLoading: true});
     submitContact(name, phoneNumber).then(response => {
+      this.setState({isLoading: false});
       // TODO: Properly inform user of bad response.
       if (!response) return;
-
       this.props.navigation.navigate('Confirmation');
     })
   }
@@ -48,10 +50,13 @@ export default class SubmitContact extends Component {
           </View>
         </View>
         <KeyboardAvoidingView behavior='padding'>
-          <TouchableOpacity 
-            style={styles.actionButton} 
+          <TouchableOpacity
+            style={this.state.isLoading ? 
+              {...styles.disabledButton, ...styles.button} : 
+              {...styles.enabledButton, ...styles.button}}
+            disabled={this.state.isLoading}
             onPress={() => this.submitContact(this.state.name, this.state.phoneNumber)}>
-            <Text style={styles.actionButtonText}>submit</Text>
+            <Text style={styles.buttonText}>{this.state.isLoading ? '...sending' : 'submit'}</Text>
           </TouchableOpacity>
         </KeyboardAvoidingView>
       </View>
@@ -59,13 +64,12 @@ export default class SubmitContact extends Component {
   }
 }
 const styles = StyleSheet.create({
-  actionButton: {
+  button: {
     alignItems: 'center',
-    backgroundColor: '#EF495B',
     justifyContent: 'center',
     padding: hp(2.5),
   },
-  actionButtonText: {
+  buttonText: {
     color: '#FFFFFF',
     fontSize: textTitle, 
     letterSpacing: wp(1),
@@ -80,6 +84,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: hp(10),
     paddingHorizontal: wp(standardContainerPadding),
+  },
+  disabledButton: {
+    backgroundColor: '#6A6A6A',
+  },
+  enabledButton: {
+    backgroundColor: '#EF495B',
   },
   explanation: {
     color: gray,
