@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    padding: hp(2.5),
+    paddingVertical: hp(2.5),
   },
   buttonText: {
     color: '#FFFFFF',
