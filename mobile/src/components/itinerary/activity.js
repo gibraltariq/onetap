@@ -41,9 +41,9 @@ export default class Activity extends Component {
 
   _getHourString = (datetime) => {
     const date = new Date(datetime)
-    const isPm = date.getHours() > 12;
+    const isPm = date.getUTCHours() > 12;
     const amPm = isPm ? 'PM': 'AM';
-    const hour = isPm ? date.getHours() - 12 : date.getHours();
+    const hour = isPm ? date.getUTCHours() - 12 : date.getUTCHours();
     return hour + ' ' + amPm;
   }
 
