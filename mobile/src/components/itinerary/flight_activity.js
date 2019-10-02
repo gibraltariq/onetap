@@ -15,7 +15,7 @@ export default class FlightActivity extends Component {
       <Activity
         {...this.props}
         iconImage={require('../../assets/plane.png')}
-        details={['Bar Airways', `$${this.props.cost}`]}
+        details={[`${this.props.cost}`]}
         backgroundColor={'#4FAFCE'}
       />
     );
