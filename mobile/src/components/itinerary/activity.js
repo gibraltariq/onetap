@@ -5,7 +5,7 @@ import {Animated, Image, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
 import {RectButton, TouchableHighlight} from 'react-native-gesture-handler';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
-import {textLarge, textMedium} from '../common';
+import {textLarge, textMedium, textSmall} from '../common';
 
 import { MaterialIcons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
@@ -101,6 +101,7 @@ export default class Activity extends Component {
         <View style={styles.mainContent}>
           <Text style={styles.title}>{this.props.title}</Text>
           {this.props.primaryDetails && <Text style={styles.primaryDetails}>{this.props.primaryDetails}</Text>}
+          {this.props.secondaryDetails && <Text style={styles.secondaryDetails}>{this.props.secondaryDetails}</Text>}
         </View>
       </View>
     );
@@ -156,9 +157,9 @@ const styles = StyleSheet.create({
       maxWidth: wp(40),
     },
     primaryDetails: {
-      color: 'rgba(230, 230, 230, 0.8)', // #E6E6E6
+      color: 'rgba(230, 230, 230, 0.9)', // #E6E6E6
       fontSize: textMedium,
-      paddingTop: hp(1.25),
+      paddingTop: paddingVertical,
     },
     rightAction: {
       alignItems: 'center',
@@ -166,6 +167,11 @@ const styles = StyleSheet.create({
       color: 'white',
       flex: 1,
       justifyContent: 'center',
+    },
+    secondaryDetails: {
+      color: 'rgba(230, 230, 230, 0.9)', // #E6E6E6
+      fontSize: textSmall,
+      paddingTop: paddingVertical,
     },
     subContainer: {
       alignItems: 'center',
