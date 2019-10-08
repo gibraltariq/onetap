@@ -1,7 +1,7 @@
 import {DAY, MONTH} from './constants';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
-import {bodyPrimarySize, bodySecondarySize, gray, textLarge, textMedium, textSmall} from '../common';
+import {gray, textSmall} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import Activity from './activity';
@@ -11,6 +11,7 @@ import IndoorActivity from './indoor_activity';
 import LodgingActivity from './lodging_activity';
 import OutdoorActivity from './outdoor_activity';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 const ACTIVITY_TYPE = {
   FLIGHT: 'flight',
@@ -34,8 +35,8 @@ export default class TripDay extends Component {
   }
 
   getDayStringFromDate = (time) => {
-    const date = new Date(time);
-    return `${DAY[date.getDay()]} ${MONTH[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    const datetime = new moment.utc(time)
+    return datetime.format('dddd MMMM D, YYYY');
   }
 
   render() {
