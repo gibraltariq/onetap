@@ -13,7 +13,8 @@ export const bodyLineHeight = bodySecondarySize * 1.5;
 export const standardContainerPadding = 7;
 
 /** Font sizes */
-export const textSmall = 12;
+export const textSmaller = 12;
+export const textSmall = 14;
 export const textMedium = 16;
 export const textLarge = 20;
 export const textTitle = 24;

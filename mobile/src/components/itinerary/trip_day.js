@@ -1,7 +1,7 @@
 import {DAY, MONTH} from './constants';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
-import {gray, textSmall} from '../common';
+import {gray, textSmaller} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import Activity from './activity';
@@ -48,8 +48,10 @@ export default class TripDay extends Component {
         cost: activity.cost,
         infoLink: activity.info_link,
         key: ind,
-        title: activity.title,
+        secondaryDetails: activity.secondary_details,
         startTime: activity.start_time,
+        title: activity.title,
+        primaryDetails: activity.primary_details,
       };
 
       switch(activity.type) {
@@ -101,7 +103,7 @@ export default class TripDay extends Component {
 const styles = StyleSheet.create({
   date: {
     color: gray,
-    fontSize: textSmall,
+    fontSize: textSmaller,
     paddingLeft: hp(1.5),
     textTransform: 'uppercase',
   },

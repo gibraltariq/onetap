@@ -20,7 +20,9 @@ export default class Activity extends Component {
     topImage: PropTypes.number,
     title: PropTypes.string.isRequired,
     infoLink: PropTypes.string,
+    primaryDetails: PropTypes.string,
     startTime: PropTypes.string.isRequired,
+    secondaryDetails: PropTypes.string,
   }
 
   static defaultProps = {
@@ -84,6 +86,7 @@ export default class Activity extends Component {
   }
 
   render() {
+    // TODO: Remove this.
     const {backgroundColor, sideIconSource} = this.props;
 
     let sideIcon;
@@ -91,15 +94,13 @@ export default class Activity extends Component {
       sideIcon = <Image style={this.props.sideIconLarge ? styles.sideIconLarge : styles.sideIcon} source={sideIconSource} />;
     }
 
-    const childComponents = (
+    const content = (
       <View style={styles.subContainer}>
         <Text style={styles.time}>{this._getHourString(this.props.startTime)}</Text>
         <Image style={styles.iconImage} source={this.props.iconImage}/>
         <View style={styles.mainContent}>
           <Text style={styles.title}>{this.props.title}</Text>
-          {this.props.details && this.props.details.map((detail, index)=> {
-            return <Text style={styles.detail} key={index}>{detail}</Text>;
-          })}
+          {this.props.primaryDetails && <Text style={styles.primaryDetails}>{this.props.primaryDetails}</Text>}
         </View>
       </View>
     );
@@ -110,10 +111,10 @@ export default class Activity extends Component {
         underlayColor='transparent'
         activeOpacity={1}
       >
-        {childComponents}
+        {content}
       </TouchableHighlight> :
       <View>
-        {childComponents}
+        {content}
       </View>;
 
     return (
@@ -148,16 +149,16 @@ const styles = StyleSheet.create({
       shadowOpacity: 0.25,
       shadowRadius: wp(3),
     },
-    detail: {
-      color: '#EFEFEF',
-      fontSize: textMedium,
-      paddingTop: hp(1.25),
-    },
     mainContent: {
       alignItems: 'flex-start',
       flex: 1,
       justifyContent: 'space-between',
       maxWidth: wp(40),
+    },
+    primaryDetails: {
+      color: 'rgba(230, 230, 230, 0.8)', // #E6E6E6
+      fontSize: textMedium,
+      paddingTop: hp(1.25),
     },
     rightAction: {
       alignItems: 'center',

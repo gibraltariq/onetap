@@ -69,7 +69,7 @@ export default class App extends Component {
   render() {
     // TOOD: Explicitly wait for deep link processing before loading AppContainer.
     return (
-      // <Itinerary tripId={'recuKM4pqk1lcF0te'}/>
+      // <Itinerary tripId={'rectDXI5YP6QMtdPw'}/>
       this.state.tripId ? <Itinerary tripId={this.state.tripId}/> : <AppContainer/>
     );
   }
