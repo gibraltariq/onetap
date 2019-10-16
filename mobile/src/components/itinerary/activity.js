@@ -11,6 +11,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import getEnvVars from '../../environment';
+import moment from 'moment';
 
 const {twilioNumber} = getEnvVars();
 
@@ -41,12 +42,9 @@ export default class Activity extends Component {
     this.setState({smsIsAvailable});
   }
 
-  _getHourString = (datetime) => {
-    const date = new Date(datetime)
-    const isPm = date.getUTCHours() > 12;
-    const amPm = isPm ? 'PM': 'AM';
-    const hour = isPm ? date.getUTCHours() - 12 : date.getUTCHours();
-    return hour + ' ' + amPm;
+  _getHourString = (datetimeString) => {
+    const datetime = new moment.utc(datetimeString)
+    return datetime.format('h:mm A');
   }
 
   _openInfoLink = () => {
