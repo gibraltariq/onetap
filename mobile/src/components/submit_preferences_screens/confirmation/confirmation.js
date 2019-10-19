@@ -1,14 +1,9 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {Component} from 'react';
-import {bodyLineHeight, bodyPrimarySize, darkGray, standardContainerPadding} from '../common';
+import {bodyLineHeight, bodyPrimarySize, darkGray, standardContainerPadding} from '../../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
-type Props = {
-    autoCorrect: Boolean;
-    fieldDescription: String;
-    placeholder: String;
-};
-export default class Confirmation extends Component<Props> {
+export default class Confirmation extends Component {
   render() {
     return (
         <View style={styles.container}>
@@ -16,11 +11,11 @@ export default class Confirmation extends Component<Props> {
                 <TouchableOpacity 
                     onPress={() => this.props.navigation.navigate('SubmitContact')}
                 >
-                    <Image source={require('../../assets/cancel.png')} />
+                    <Image source={require('../../../assets/cancel.png')} />
                 </TouchableOpacity>
             </View>
             <View style={styles.content}>
-                <Image source={require('../../assets/check.png')} />
+                <Image source={require('../../../assets/check.png')} />
                 <Text style={styles.message}>
                     Boom, it's that simple. An agent will text you in a jiffy.
                 </Text>

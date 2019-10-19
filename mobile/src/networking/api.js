@@ -2,7 +2,7 @@ import Sentry from 'react-native-sentry';
 import getEnvVars from '../environment';
 const {apiUrl} = getEnvVars();
 
-export const submitContact = async (name, phoneNumber) => {
+export const submitContact = async (name, phoneNumber, location) => {
     const contactUrl = apiUrl + '/contact'
     try {
         let response = await fetch(contactUrl, {

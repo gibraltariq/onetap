@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {createAppContainer, createStackNavigator} from "react-navigation";
 
-import Confirmation from './src/components/confirmation/confirmation';
+import Confirmation from './src/components/submit_preferences_screens/confirmation/confirmation';
 import {Linking as ExpoLinking} from 'expo';
 import Itinerary from './src/components/itinerary/itinerary';
 import {Linking as ReactLinking} from 'react-native';
+import SearchLocation from './src/components/submit_preferences_screens/search_location/search_location';
 import Sentry from 'sentry-expo';
-import SubmitContact from './src/components/submit_contact/submit_contact';
+import SubmitContact from './src/components/submit_preferences_screens/submit_contact/submit_contact';
 
 function installLogger() {
   Sentry.enableInExpoDevelopment=true;
@@ -16,11 +17,12 @@ installLogger();
 
 const AppNavigator = createStackNavigator(
   {
+    SearchLocation: SearchLocation,
     SubmitContact: SubmitContact,
     Confirmation: Confirmation,
   },
   {
-    initialRouteName: 'SubmitContact',
+    initialRouteName: 'SearchLocation',
     headerMode: 'none'
   }
 );

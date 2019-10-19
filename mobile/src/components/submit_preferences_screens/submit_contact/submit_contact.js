@@ -1,10 +1,10 @@
 import {KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {Component} from 'react';
-import {darkGray, gray, standardContainerPadding, textLarge, textMedium, textTitle} from '../common';
+import {darkGray, gray, standardContainerPadding, textLarge, textMedium, textTitle} from '../../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import FormField from './form_field';
-import {submitContact} from '../../networking/api';
+import {submitContact} from '../../../networking/api';
 
 export default class SubmitContact extends Component {
   constructor(props) {
@@ -18,7 +18,10 @@ export default class SubmitContact extends Component {
 
   submitContact(name, phoneNumber) {
     this.setState({isLoading: true});
-    submitContact(name, phoneNumber).then(response => {
+
+    const location = this.props.navigation.getParam('location', '');
+
+    submitContact(name, phoneNumber, location).then(response => {
       this.setState({isLoading: false});
       // TODO: Properly inform user of bad response.
       if (!response) return;

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
-import {bodyPrimarySize, bodySecondarySize, gray, textMedium} from '../common';
+import {bodyPrimarySize, bodySecondarySize, gray, textMedium} from '../../common';
 
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
