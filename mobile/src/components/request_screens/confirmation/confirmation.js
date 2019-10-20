@@ -4,12 +4,16 @@ import {bodyLineHeight, bodyPrimarySize, darkGray, standardContainerPadding} fro
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 export default class Confirmation extends Component {
+  static navigationOptions = {
+    header: null
+  }
+
   render() {
     return (
         <View style={styles.container}>
             <View style={styles.topBar}>
-                <TouchableOpacity 
-                    onPress={() => this.props.navigation.navigate('SubmitContact')}
+                <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate('SearchLocation')}
                 >
                     <Image source={require('../../../assets/cancel.png')} />
                 </TouchableOpacity>

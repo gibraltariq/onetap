@@ -14,7 +14,8 @@ export default class SearchLocation extends Component {
   }
 
   static navigationOptions = {
-    header: null
+    header: null,
+    headerBackTitle: null,
   }
 
   constructor(props) {
@@ -41,6 +42,7 @@ export default class SearchLocation extends Component {
             <View style={styles.top}>
                 <View style={styles.searchBar}>
                     <TextInput style={styles.searchInput}
+                        autoFocus={true}
                         keyboardType={'default'}
                         onChangeText={(location) => this.setState({location})}
                         placeholder={'Where to?'}

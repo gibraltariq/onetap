@@ -11,10 +11,7 @@ export default class FormField extends Component {
             <Text style={styles.ask}>{this.props.fieldDescription}</Text>
             <TextInput
                 style={styles.input}
-                autoCorrect={this.props.autoCorrect}
-                keyboardType={this.props.keyboardType}
-                onChangeText={this.props.onChangeText}
-                placeholder={this.props.placeholder}
+                {...this.props}
               />
         </View>
     );

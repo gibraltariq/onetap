@@ -19,6 +19,7 @@ export default class SubmitTripRequest extends Component {
 
   static navigationOptions = {
     title: 'Contact Info',
+    headerTintColor: 'black',
   }
 
   submitTripRequest(name, phoneNumber) {
@@ -41,15 +42,16 @@ export default class SubmitTripRequest extends Component {
           <View style={styles.header}>
             {/* <Text style={styles.title}>Where can we reach you?</Text> */}
             <Text style={styles.explanation}>
-              So we can get your preferences and send you an itinerary!
+              Drop us your contact, so we can send your itinerary!
             </Text>
           </View>
           <View style={styles.form}>
             <FormField
+              autoFocus={true}
               fieldDescription={'My number is'}
               keyboardType={'phone-pad'}
               onChangeText={(phoneNumber) => this.setState({phoneNumber})}
-              placeholder='7136476891' />
+              placeholder='7136476987' />
             <FormField
               autoCorrect={false}
               fieldDescription={'My name is'}
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
     marginTop: hp(1),
   },
   form: {
-    marginTop: hp(3),
+    // marginTop: hp(1),
   },
   title: {
     color: darkGray,

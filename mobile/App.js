@@ -22,6 +22,7 @@ const AppNavigator = createStackNavigator(
     Confirmation: Confirmation,
   },
   {
+    // initialRouteName: 'SubmitTripRequest',
     initialRouteName: 'SearchLocation',
   }
 );
