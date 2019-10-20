@@ -10,16 +10,14 @@ export default class NextButton extends Component {
 
   render() {
     return (
-        <KeyboardAvoidingView behavior='padding'>
-            <TouchableOpacity
-            style={this.props.isAwaiting ? 
-                {...styles.disabledButton, ...styles.button} : 
-                {...styles.enabledButton, ...styles.button}}
-            disabled={this.props.isAwaiting}
-            onPress={this.props.onPress}>
-            <Text style={styles.buttonText}>{this.props.isAwaiting ? this.props.awaitingText : this.props.buttonText}</Text>
-            </TouchableOpacity>
-        </KeyboardAvoidingView>
+      <TouchableOpacity
+        style={this.props.isAwaiting ?
+            {...styles.disabledButton, ...styles.button} :
+            {...styles.enabledButton, ...styles.button}}
+        disabled={this.props.isAwaiting}
+        onPress={this.props.onPress}>
+      <Text style={styles.buttonText}>{this.props.isAwaiting ? this.props.awaitingText : this.props.buttonText}</Text>
+      </TouchableOpacity>
     );
   }
 }

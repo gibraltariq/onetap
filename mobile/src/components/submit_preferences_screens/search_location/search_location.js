@@ -1,8 +1,9 @@
-import {KeyboardAvoidingView, StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
+import {Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, View} from 'react-native';
 import React, {Component} from 'react';
-import {bodyPrimarySize, bodySecondarySize, gray, standardContainerPadding} from '../../common';
+import {THEME_PINK, bodyPrimarySize, bodySecondarySize, gray, standardContainerPadding} from '../../common';
 
 import NextButton from '../next_button';
+import Pacman from './pacman';
 import PropTypes from 'prop-types'
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
@@ -23,29 +24,37 @@ export default class SearchLocation extends Component {
     this.props.navigation.navigate('SubmitContact', {location: this.state.location});
   }
 
+  someTextWritten = () => {
+    return this.state.location.length > 0;
+  }
+
   render() {
     return (
-        <View style={styles.container}>
+        <View style={{
+          ...styles.container,
+          backgroundColor: this.someTextWritten() ? '#F2F2F2': THEME_PINK}}>
             <View style={styles.top}>
                 <View style={styles.searchBar}>
-                    <TextInput style={styles.searchInput} 
+                    <TextInput style={styles.searchInput}
                         keyboardType={'default'}
                         onChangeText={(location) => this.setState({location})}
                         placeholder={'Where to?'}
+                        selectionColor={THEME_PINK}
                     />
                 </View>
                 <View style={styles.searchResults}>
                 </View>
-                <View style={styles.pacman}>
-                    {/* Should be keyboard avoiding view */}
-                </View>
             </View>
-            <NextButton 
-                awaitingText={'Next'} 
-                buttonText={'Next'} 
-                isAwaiting={!this.state.location}
-                onPress={this.onNext}
-            />
+            {!this.someTextWritten() && <Pacman/>}
+            <KeyboardAvoidingView behavior='padding'>
+              {this.someTextWritten() &&
+                <NextButton
+                  awaitingText={'Next'}
+                  buttonText={'Next'}
+                  isAwaiting={!this.state.location}
+                  onPress={this.onNext}/>
+              }
+            </KeyboardAvoidingView>
         </View>
     );
   }
@@ -53,18 +62,10 @@ export default class SearchLocation extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#F96866',
-        flex: 1,
-        // padding: hp(standardContainerPadding),
-    },
-    top: {
+        backgroundColor: THEME_PINK,
         flex: 1,
     },
     searchBar: {
-        // borderColor: 'white',
-        // borderRadius: 8,
-        // borderWidth: 1,
-        // marginTop: hp(1),
         backgroundColor: 'white',
         paddingTop: hp(5),
     },
@@ -73,5 +74,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         fontSize: hp(bodyPrimarySize),
         padding: hp(bodySecondarySize * 0.9),
-    }
+    },
+    top: {
+        flex: 1,
+    },
 });
