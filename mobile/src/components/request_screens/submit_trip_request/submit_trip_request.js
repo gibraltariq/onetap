@@ -4,6 +4,7 @@ import {darkGray, gray, standardContainerPadding, textLarge, textMedium, textTit
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import FormField from './form_field';
+import { Header } from 'react-navigation';
 import {submitTripRequest} from '../../../networking/api';
 
 export default class SubmitTripRequest extends Component {
@@ -14,6 +15,10 @@ export default class SubmitTripRequest extends Component {
       phoneNumber: '',
       isLoading: false,
     };
+  }
+
+  static navigationOptions = {
+    title: 'Contact Info',
   }
 
   submitTripRequest(name, phoneNumber) {
@@ -34,7 +39,7 @@ export default class SubmitTripRequest extends Component {
       <View style={styles.container}>
         <View style={styles.content}>
           <View style={styles.header}>
-            <Text style={styles.title}>Where can we reach you?</Text>
+            {/* <Text style={styles.title}>Where can we reach you?</Text> */}
             <Text style={styles.explanation}>
               So we can get your preferences and send you an itinerary!
             </Text>
@@ -44,7 +49,7 @@ export default class SubmitTripRequest extends Component {
               fieldDescription={'My number is'}
               keyboardType={'phone-pad'}
               onChangeText={(phoneNumber) => this.setState({phoneNumber})}
-              placeholder='+1' />
+              placeholder='7136476891' />
             <FormField
               autoCorrect={false}
               fieldDescription={'My name is'}
@@ -52,7 +57,7 @@ export default class SubmitTripRequest extends Component {
               placeholder='Salman Khan'/>
           </View>
         </View>
-        <KeyboardAvoidingView behavior='padding'>
+        <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={Header.HEIGHT + 20}>
           <TouchableOpacity
             style={this.state.isLoading ?
               {...styles.disabledButton, ...styles.button} :
@@ -85,7 +90,7 @@ const styles = StyleSheet.create({
   content: {
     backgroundColor: '#FAFAFA',
     flex: 1,
-    paddingVertical: hp(10),
+    paddingVertical: hp(3),
     paddingHorizontal: wp(standardContainerPadding),
   },
   disabledButton: {

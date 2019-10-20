@@ -4,18 +4,13 @@ import {bodyPrimarySize, bodySecondarySize, gray, textMedium} from '../../common
 
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-type Props = {
-    autoCorrect: Boolean;
-    fieldDescription: String;
-    placeholder: String;
-};
-export default class FormField extends Component<Props> {
+export default class FormField extends Component {
   render() {
     return (
         <View style={styles.field}>
             <Text style={styles.ask}>{this.props.fieldDescription}</Text>
-            <TextInput 
-                style={styles.input} 
+            <TextInput
+                style={styles.input}
                 autoCorrect={this.props.autoCorrect}
                 keyboardType={this.props.keyboardType}
                 onChangeText={this.props.onChangeText}
@@ -35,6 +30,7 @@ const styles = StyleSheet.create({
     marginTop: hp(3),
   },
   input: {
+    backgroundColor: 'white',
     borderColor: gray,
     borderRadius: 8,
     borderWidth: 1,
