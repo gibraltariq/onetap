@@ -2,6 +2,7 @@ import {Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, View} from 're
 import React, {Component} from 'react';
 import {THEME_PINK, bodyPrimarySize, bodySecondarySize, gray, standardContainerPadding} from '../../common';
 
+import {Header} from 'react-navigation';
 import NextButton from '../next_button';
 import Pacman from './pacman';
 import PropTypes from 'prop-types'
@@ -10,6 +11,10 @@ import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 export default class SearchLocation extends Component {
   static propTypes  = {
     navigation: PropTypes.object.isRequired,
+  }
+
+  static navigationOptions = {
+    header: null
   }
 
   constructor(props) {

@@ -23,7 +23,6 @@ const AppNavigator = createStackNavigator(
   },
   {
     initialRouteName: 'SearchLocation',
-    headerMode: 'none'
   }
 );
 
