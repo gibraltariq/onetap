@@ -12,7 +12,7 @@ const DEFAULT_PLANNER = {
 };
 
 router.post('/', (req, res) => {
-    validateContactInfo(req.body).then(validatedBody => {
+    validateTripRequest(req.body).then(validatedBody => {
         const {name, phoneNumber, location} = validatedBody;
         return airtable('TripRequest').create({
            'name': name,
@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
     });
 });
 
-function validateContactInfo(requestBody) {
+function validateTripRequest(requestBody) {
     const schema = Joi.object().keys({
         name: Joi.string().required(),
         phoneNumber: Joi.string()
