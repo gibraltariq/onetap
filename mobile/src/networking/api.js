@@ -11,12 +11,12 @@ export const submitContact = async (name, phoneNumber, location) => {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({name, phoneNumber}),
+            body: JSON.stringify({name, phoneNumber, location}),
         });
         if (!response.ok) {
             console.log(`Bad contact request ${JSON.stringify(response)}`)
             return;
-        } 
+        }
         return response;
     } catch (error) {
         console.error(error);
