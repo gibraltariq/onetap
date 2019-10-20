@@ -4,9 +4,9 @@ import {darkGray, gray, standardContainerPadding, textLarge, textMedium, textTit
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import FormField from './form_field';
-import {submitContact} from '../../../networking/api';
+import {submitTripRequest} from '../../../networking/api';
 
-export default class SubmitContact extends Component {
+export default class SubmitTripRequest extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,12 +16,12 @@ export default class SubmitContact extends Component {
     };
   }
 
-  submitContact(name, phoneNumber) {
+  submitTripRequest(name, phoneNumber) {
     this.setState({isLoading: true});
 
     const location = this.props.navigation.getParam('location', '');
 
-    submitContact(name, phoneNumber, location).then(response => {
+    submitTripRequest(name, phoneNumber, location).then(response => {
       this.setState({isLoading: false});
       // TODO: Properly inform user of bad response.
       if (!response) return;
@@ -41,24 +41,24 @@ export default class SubmitContact extends Component {
           </View>
           <View style={styles.form}>
             <FormField
-              fieldDescription={'My number is'} 
+              fieldDescription={'My number is'}
               keyboardType={'phone-pad'}
               onChangeText={(phoneNumber) => this.setState({phoneNumber})}
               placeholder='+1' />
             <FormField
               autoCorrect={false}
-              fieldDescription={'My name is'} 
+              fieldDescription={'My name is'}
               onChangeText={(name) => this.setState({name})}
               placeholder='Salman Khan'/>
           </View>
         </View>
         <KeyboardAvoidingView behavior='padding'>
           <TouchableOpacity
-            style={this.state.isLoading ? 
-              {...styles.disabledButton, ...styles.button} : 
+            style={this.state.isLoading ?
+              {...styles.disabledButton, ...styles.button} :
               {...styles.enabledButton, ...styles.button}}
             disabled={this.state.isLoading}
-            onPress={() => this.submitContact(this.state.name, this.state.phoneNumber)}>
+            onPress={() => this.submitTripRequest(this.state.name, this.state.phoneNumber)}>
             <Text style={styles.buttonText}>{this.state.isLoading ? '...sending' : 'submit'}</Text>
           </TouchableOpacity>
         </KeyboardAvoidingView>
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#FFFFFF',
-    fontSize: textTitle, 
+    fontSize: textTitle,
     letterSpacing: wp(1),
     textTransform: 'uppercase',
   },

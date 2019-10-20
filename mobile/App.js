@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {createAppContainer, createStackNavigator} from "react-navigation";
 
-import Confirmation from './src/components/submit_preferences_screens/confirmation/confirmation';
+import Confirmation from './src/components/request_screens/confirmation/confirmation';
 import {Linking as ExpoLinking} from 'expo';
 import Itinerary from './src/components/itinerary/itinerary';
 import {Linking as ReactLinking} from 'react-native';
-import SearchLocation from './src/components/submit_preferences_screens/search_location/search_location';
+import SearchLocation from './src/components/request_screens/search_location/search_location';
 import Sentry from 'sentry-expo';
-import SubmitContact from './src/components/submit_preferences_screens/submit_contact/submit_contact';
+import SubmitTripRequest from './src/components/request_screens/submit_trip_request/submit_trip_request';
 
 function installLogger() {
   Sentry.enableInExpoDevelopment=true;
@@ -18,7 +18,7 @@ installLogger();
 const AppNavigator = createStackNavigator(
   {
     SearchLocation: SearchLocation,
-    SubmitContact: SubmitContact,
+    SubmitTripRequest: SubmitTripRequest,
     Confirmation: Confirmation,
   },
   {
@@ -61,7 +61,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.installDeepLinkHandlers();    
+    this.installDeepLinkHandlers();
   }
 
   componentWillUnmount() {
