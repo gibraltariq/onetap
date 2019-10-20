@@ -34,7 +34,8 @@ function validateContactInfo(requestBody) {
         name: Joi.string().required(),
         phoneNumber: Joi.string()
             .regex(/^[+]?(\d{1,2})?[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/)
-            .required()
+            .required(),
+        location: Joi.string().required()
     });
     return Joi.validate(requestBody, schema);
 }
