@@ -45,13 +45,13 @@ export default class SearchLocation extends Component {
                 <View style={styles.searchResults}>
                 </View>
             </View>
-            {!this.someTextWritten() && <Pacman/>}
+            <Pacman isExcited={this.someTextWritten()}/>
             <KeyboardAvoidingView behavior='padding'>
-              {this.someTextWritten() &&
-                <NextButton
+              {<NextButton
+                  style={this.someTextWritten() ? {} : {opacity: 0}}
                   awaitingText={'Next'}
                   buttonText={'Next'}
-                  isAwaiting={!this.state.location}
+                  isAwaiting={!this.someTextWritten()}
                   onPress={this.onNext}/>
               }
             </KeyboardAvoidingView>
