@@ -5,8 +5,8 @@ app.use(express.json());
 
 // Routes from other modules.
 const trip = require('./routes/trip');
-const request = require('./routes/trip_request');
+const tripRequest = require('./routes/trip_request');
 app.use('/trip', trip);
-app.use('/request', request);
+app.use('/tripRequest', tripRequest);
 
 module.exports = app;
