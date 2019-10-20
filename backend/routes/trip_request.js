@@ -13,11 +13,12 @@ const DEFAULT_PLANNER = {
 
 router.post('/', (req, res) => {
     validateContactInfo(req.body).then(validatedBody => {
-        const {name, phoneNumber} = validatedBody;
-        return airtable('User').create({
-           'Name': name,
-           'Phone Number': phoneNumber,
-           'Planner': DEFAULT_PLANNER,
+        const {name, phoneNumber, location} = validatedBody;
+        return airtable('TripRequest').create({
+           'name': name,
+           'phone_number': phoneNumber,
+           'planner': DEFAULT_PLANNER,
+           'location_requested': location,
         });
     }).then(() => res.sendStatus(200))
     .catch(error => {
