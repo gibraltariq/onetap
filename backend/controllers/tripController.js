@@ -17,7 +17,7 @@ exports.tripDetailGet = async (req, res, next) => {
 
 /** Gets the full trip with details and activities. */
 exports.tripFullGet = async(req, res) => {
-    const activityDays = req.activityDays; 
+    const activityDays = req.activityDays;
     const tripTitle = req.tripTitle;
 
     try {
