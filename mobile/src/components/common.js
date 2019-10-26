@@ -5,6 +5,7 @@ export const lightGray = '#BDBDBD';
 export const gray = '#828282';
 export const darkGray = '#4F4F4F';
 export const THEME_PINK = '#F96866';
+export const THEME_WHITE = '#FAFAFA';
 
 /** Sizes */
 export const bodyTertiarySize = 2; // Based on Apple tertiary 13 pt font size.

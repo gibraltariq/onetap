@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {createAppContainer, createStackNavigator} from "react-navigation";
 
+import AppStyles from './AppStyles';
 import Confirmation from './src/components/request_screens/confirmation/confirmation';
 import {Linking as ExpoLinking} from 'expo';
 import Itinerary from './src/components/itinerary/itinerary';
@@ -8,6 +9,7 @@ import {Linking as ReactLinking} from 'react-native';
 import SearchLocation from './src/components/request_screens/search_location/search_location';
 import Sentry from 'sentry-expo';
 import SubmitTripRequest from './src/components/request_screens/submit_trip_request/submit_trip_request';
+import WhatYouLike from './src/components/request_screens/what_you_like/what_you_like';
 
 function installLogger() {
   Sentry.enableInExpoDevelopment=true;
@@ -17,13 +19,18 @@ installLogger();
 
 const AppNavigator = createStackNavigator(
   {
+    Confirmation: Confirmation,
     SearchLocation: SearchLocation,
     SubmitTripRequest: SubmitTripRequest,
-    Confirmation: Confirmation,
+    WhatYouLike: WhatYouLike,
   },
   {
-    // initialRouteName: 'SubmitTripRequest',
-    initialRouteName: 'SearchLocation',
+    defaultNavigationOptions: {
+      headerStyle: AppStyles.defaultHeader,
+      headerTitleStyle: AppStyles.defaultHeaderTitle
+    },
+    headerLayoutPreset: 'left',
+    initialRouteName: 'WhatYouLike',
   }
 );
 
