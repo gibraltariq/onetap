@@ -27,7 +27,7 @@ export default class SearchLocation extends Component {
 
 
   onNext = () => {
-    this.props.navigation.navigate('SubmitTripRequest', {location: this.state.location});
+    this.props.navigation.navigate('WhatYouLike', {location: this.state.location});
   }
 
   someTextWritten = () => {

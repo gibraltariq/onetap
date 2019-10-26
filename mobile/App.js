@@ -1,7 +1,7 @@
+import {AppStyles, defaultHeaderTint} from './AppStyles';
 import React, {Component} from 'react';
 import {createAppContainer, createStackNavigator} from "react-navigation";
 
-import AppStyles from './AppStyles';
 import Confirmation from './src/components/request_screens/confirmation/confirmation';
 import {Linking as ExpoLinking} from 'expo';
 import Itinerary from './src/components/itinerary/itinerary';
@@ -26,11 +26,13 @@ const AppNavigator = createStackNavigator(
   },
   {
     defaultNavigationOptions: {
+      headerBackTitle: null,
       headerStyle: AppStyles.defaultHeader,
+      headerTintColor: defaultHeaderTint,
       headerTitleStyle: AppStyles.defaultHeaderTitle
     },
     headerLayoutPreset: 'left',
-    initialRouteName: 'WhatYouLike',
+    initialRouteName: 'SearchLocation',
   }
 );
 

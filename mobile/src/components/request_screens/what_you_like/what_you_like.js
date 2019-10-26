@@ -1,6 +1,6 @@
 import {Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, View} from 'react-native';
 import React, {Component} from 'react';
-import {THEME_PINK, THEME_WHITE, bodyPrimarySize, bodySecondarySize, bodyTertiarySize, gray, lightGray, standardContainerPadding} from '../../common';
+import {THEME_PINK, THEME_WHITE, bodyPrimarySize, bodySecondarySize, bodyTertiarySize, gray, lightGray, standardContainerPadding, textMedium, textSmall} from '../../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import PropTypes from 'prop-types'
@@ -35,10 +35,11 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: THEME_WHITE,
     flex: 1,
-    padding: wp(7),
+    paddingHorizontal: wp(standardContainerPadding),
+    paddingVertical: hp(2),
   },
   instructions: {
     color: gray,
-    fontSize: hp(2.1),
+    fontSize: textMedium,
   }
 });
