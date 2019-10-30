@@ -32,7 +32,7 @@ const AppNavigator = createStackNavigator(
       headerTitleStyle: AppStyles.defaultHeaderTitle
     },
     headerLayoutPreset: 'left',
-    initialRouteName: 'SearchLocation',
+    initialRouteName: 'WhatYouLike',
   }
 );
 

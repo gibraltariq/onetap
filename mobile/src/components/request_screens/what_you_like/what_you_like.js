@@ -1,8 +1,9 @@
-import {Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, View} from 'react-native';
 import React, {Component} from 'react';
-import {THEME_PINK, THEME_WHITE, bodyPrimarySize, bodySecondarySize, bodyTertiarySize, gray, lightGray, standardContainerPadding, textMedium, textSmall} from '../../common';
+import {StyleSheet, Text, View} from 'react-native';
+import {THEME_PINK, THEME_WHITE, gray, standardContainerPadding, textMedium} from '../../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
+import Interest from './interest';
 import PropTypes from 'prop-types'
 
 export default class WhatYouLike extends Component {
@@ -26,6 +27,7 @@ export default class WhatYouLike extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.instructions}>Choose at least 2 interests</Text>
+        <Interest interestName={'Monuments'}/>
       </View>
     );
   }
@@ -41,5 +43,5 @@ const styles = StyleSheet.create({
   instructions: {
     color: gray,
     fontSize: textMedium,
-  }
+  },
 });

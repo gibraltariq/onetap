@@ -88,7 +88,7 @@ export default class TripDay extends Component {
       }
     }
 
-    const tripDayDate = this.props.activities.length > 0 ? 
+    const tripDayDate = this.props.activities.length > 0 ?
       this.getDayStringFromDate(this.props.activities[0].start_time) : '';
 
     return (
