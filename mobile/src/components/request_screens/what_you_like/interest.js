@@ -9,6 +9,7 @@ export default class Interest extends Component {
   static propTypes  = {
     imageSrc: PropTypes.number.isRequired,
     interestName: PropTypes.string.isRequired,
+    selectedInterests: PropTypes.object.isRequired
   }
 
   constructor(props) {
@@ -18,13 +19,20 @@ export default class Interest extends Component {
     };
   }
 
-  _onSelected = () => {
-    this.setState((state, props) => ({isSelected: !state.isSelected}));
+  _onPress = () => {
+    this.setState((state, props) => {
+      if (state.isSelected) {
+        props.selectedInterests.delete(props.interestName);
+      } else {
+        props.selectedInterests.add(props.interestName);
+      }
+      return {isSelected: !state.isSelected};
+    });
   }
 
   render() {
     return (
-      <TouchableOpacity onPress={this._onSelected}>
+      <TouchableOpacity onPress={this._onPress}>
         <View style={[
             styles.container,
             this.state.isSelected ? styles.containerSelected : styles.containerUnselected

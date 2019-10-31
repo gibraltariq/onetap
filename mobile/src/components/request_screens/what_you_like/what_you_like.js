@@ -40,7 +40,9 @@ export default class WhatYouLike extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      selectedInterests: new Set() // Assumes interest names WILL be unique.
+    };
   }
 
 
@@ -50,17 +52,23 @@ export default class WhatYouLike extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.instructions}>Choose at least 2 interests</Text>
-        <FlatList
-          style={styles.interestGrid}
-          columnWrapperStyle={styles.interestRow}
-          data={INTEREST_TYPES}
-          keyExtractor={(item,index) => 'index_' + index}
-          numColumns={2}
-          renderItem={({item, index}) =>
-            <Interest interestName={item.name} imageSrc={item.imageSrc}/>}/>
-      </View>
+      <SafeAreaView style={styles.safeContainer}>
+        <View style={styles.container}>
+          <Text style={styles.instructions}>Choose at least 2 interests</Text>
+          <FlatList
+            style={styles.interestGrid}
+            columnWrapperStyle={styles.interestRow}
+            data={INTEREST_TYPES}
+            keyExtractor={(item,index) => 'index_' + index}
+            numColumns={2}
+            renderItem={({item, index}) =>
+              <Interest
+                interestName={item.name}
+                imageSrc={item.imageSrc}
+                selectedInterests={this.state.selectedInterests}/>}
+              />
+        </View>
+      </SafeAreaView>
     );
   }
 }
@@ -82,5 +90,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-evenly',
     marginVertical: hp(1),
+  },
+  safeContainer: {
+    flex: 1,
   }
 });
