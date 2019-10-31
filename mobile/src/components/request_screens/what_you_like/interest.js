@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 
 export default class Interest extends Component {
   static propTypes  = {
+    imageSrc: PropTypes.number.isRequired,
     interestName: PropTypes.string.isRequired,
   }
 
@@ -28,7 +29,7 @@ export default class Interest extends Component {
             styles.container,
             this.state.isSelected ? styles.containerSelected : styles.containerUnselected
           ]}>
-            <Image style={styles.interestIcon} source={require('../../../assets/museum.png')}/>
+            <Image style={styles.interestIcon} source={this.props.imageSrc}/>
             <Text style={styles.interestName}>{this.props.interestName}</Text>
         </View>
       </TouchableOpacity>
