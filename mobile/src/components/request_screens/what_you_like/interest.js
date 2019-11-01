@@ -7,9 +7,10 @@ import PropTypes from 'prop-types'
 
 export default class Interest extends Component {
   static propTypes  = {
+    addInterest: PropTypes.func.isRequired,
     imageSrc: PropTypes.number.isRequired,
     interestName: PropTypes.string.isRequired,
-    selectedInterests: PropTypes.object.isRequired
+    removeInterest: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -22,9 +23,9 @@ export default class Interest extends Component {
   _onPress = () => {
     this.setState((state, props) => {
       if (state.isSelected) {
-        props.selectedInterests.delete(props.interestName);
+        props.removeInterest();
       } else {
-        props.selectedInterests.add(props.interestName);
+        props.addInterest();
       }
       return {isSelected: !state.isSelected};
     });
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     height: hp(17),
     justifyContent: 'center',
-    opacity: 0.5,
+    opacity: 0.7,
     paddingHorizontal: wp(2.6),
     paddingVertical: hp(1.2),
     width: wp(35),

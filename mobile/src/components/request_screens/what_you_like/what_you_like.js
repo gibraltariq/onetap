@@ -4,7 +4,9 @@ import {THEME_PINK, THEME_WHITE, gray, standardContainerPadding, textMedium} fro
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import { FlatList } from 'react-native-gesture-handler';
+import {Set as ISet} from 'immutable';
 import Interest from './interest';
+import NextButton from '../next_button';
 import PropTypes from 'prop-types'
 import {SafeAreaView} from 'react-navigation';
 
@@ -31,6 +33,8 @@ const INTEREST_TYPES = [
   },
 ];
 
+const MIN_INTERESTS = 2;
+
 export default class WhatYouLike extends Component {
   static propTypes  = {}
 
@@ -41,14 +45,25 @@ export default class WhatYouLike extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedInterests: new Set() // Assumes interest names WILL be unique.
+      selectedInterests: new ISet() // Assumes interest names WILL be unique.
     };
   }
 
-
-  onNext = () => {
-    // this.props.navigation.navigate('SubmitTripRequest', {location: this.state.location});
+  // onNext = () => {
+  //   this.props.navigation.navigate('SubmitTripRequest', {location: this.state.location});
+  // }
+  _addInterest = (item) => {
+    // Use Immutable sets so that state update is triggered.
+    const newSelectedInterests = this.state.selectedInterests.add(item.name);
+    this.setState({selectedInterests: newSelectedInterests});
   }
+
+  _removeInterest = (item) => {
+    // Use Immutable sets so that state update is triggered.
+    const newSelectedInterests = this.state.selectedInterests.delete(item.name);
+    this.setState({selectedInterests: newSelectedInterests});
+  }
+
 
   render() {
     return (
@@ -61,13 +76,19 @@ export default class WhatYouLike extends Component {
             data={INTEREST_TYPES}
             keyExtractor={(item,index) => 'index_' + index}
             numColumns={2}
-            renderItem={({item, index}) =>
+            renderItem={({item}) =>
               <Interest
                 interestName={item.name}
                 imageSrc={item.imageSrc}
-                selectedInterests={this.state.selectedInterests}/>}
+                addInterest={() => this._addInterest(item)}
+                removeInterest={() => this._removeInterest(item)}
+                />}
               />
         </View>
+        <NextButton
+          awaitingText={'NEXT'}
+          buttonText={'NEXT'}
+          isAwaiting={this.state.selectedInterests.size < MIN_INTERESTS}/>
       </SafeAreaView>
     );
   }

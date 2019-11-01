@@ -3,9 +3,15 @@ import React, {Component} from 'react';
 import {darkGray, gray, standardContainerPadding, textLarge, textMedium, textTitle} from '../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
+import PropTypes from 'prop-types'
+
 export default class NextButton extends Component {
   constructor(props) {
     super(props);
+  }
+
+  static propTypes  = {
+    buttonText: PropTypes.string.isRequired,
   }
 
   render() {
@@ -34,6 +40,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: hp(2.5),
+    backgroundColor: '#EF495B',
   },
   buttonText: {
     color: '#FFFFFF',
@@ -42,14 +49,6 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   disabledButton: {
-    backgroundColor: '#6A6A6A',
-  },
-  enabledButton: {
-    backgroundColor: '#EF495B',
-  },
-  explanation: {
-    color: gray,
-    fontSize: textLarge,
-    marginTop: hp(1),
+    opacity: 0.25,
   },
 });
