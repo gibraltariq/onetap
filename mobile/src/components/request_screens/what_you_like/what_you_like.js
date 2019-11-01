@@ -49,9 +49,10 @@ export default class WhatYouLike extends Component {
     };
   }
 
-  // onNext = () => {
-  //   this.props.navigation.navigate('SubmitTripRequest', {location: this.state.location});
-  // }
+  _onNext = () => {
+    this.props.navigation.navigate('SubmitTripRequest', {location: this.state.location});
+  }
+
   _addInterest = (item) => {
     // Use Immutable sets so that state update is triggered.
     const newSelectedInterests = this.state.selectedInterests.add(item.name);
@@ -88,7 +89,9 @@ export default class WhatYouLike extends Component {
         <NextButton
           awaitingText={'NEXT'}
           buttonText={'NEXT'}
-          isAwaiting={this.state.selectedInterests.size < MIN_INTERESTS}/>
+          isAwaiting={this.state.selectedInterests.size < MIN_INTERESTS}
+          onPress={this._onNext}
+        />
       </SafeAreaView>
     );
   }
