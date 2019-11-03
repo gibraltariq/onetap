@@ -54,15 +54,15 @@ export default class SubmitTripRequest extends Component {
           <View style={styles.form}>
             <FormField
               autoFocus={true}
-              fieldDescription={'My number is'}
+              fieldDescription={'Number'}
               keyboardType={'phone-pad'}
               onChangeText={(phoneNumber) => this.setState({phoneNumber})}
-              placeholder='7136476987' />
+              placeholder='2816841234' />
             <FormField
               autoCorrect={false}
-              fieldDescription={'My name is'}
+              fieldDescription={'Name'}
               onChangeText={(name) => this.setState({name})}
-              placeholder='Salman Khan'/>
+              placeholder='Ibn Batuta'/>
           </View>
         </View>
         <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={Header.HEIGHT + 40}>
