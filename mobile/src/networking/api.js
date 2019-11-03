@@ -2,7 +2,7 @@ import Sentry from 'react-native-sentry';
 import getEnvVars from '../environment';
 const {apiUrl} = getEnvVars();
 
-export const submitTripRequest = async (name, phoneNumber, location) => {
+export const submitTripRequest = async (tripRequest) => {
     const tripRequestUrl = apiUrl + '/tripRequest'
     try {
         let response = await fetch(tripRequestUrl, {
@@ -11,10 +11,10 @@ export const submitTripRequest = async (name, phoneNumber, location) => {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({name, phoneNumber, location}),
+            body: JSON.stringify(tripRequest),
         });
         if (!response.ok) {
-            console.log(`Bad contact request ${JSON.stringify(response)}`)
+            console.log(`Bad contact request ${JSON.stringify(response)}`);
             return;
         }
         return response;

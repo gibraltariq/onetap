@@ -22,7 +22,8 @@ exports.tripRequestValidate = async (req, res, next) => {
     phoneNumber: Joi.string()
         .regex(/^[+]?(\d{1,2})?[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/)
         .required(),
-    location: Joi.string().required()
+    location: Joi.string().required(),
+    interests: Joi.array().items(Joi.string()).required(),
   });
 
   try {

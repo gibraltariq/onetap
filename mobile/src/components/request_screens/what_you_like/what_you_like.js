@@ -50,7 +50,10 @@ export default class WhatYouLike extends Component {
   }
 
   _onNext = () => {
-    this.props.navigation.navigate('SubmitTripRequest', {location: this.state.location});
+    const curRequest = this.props.navigation.getParam('tripRequest', {});
+    this.props.navigation.navigate(
+      'SubmitTripRequest',
+      {tripRequest: {...curRequest, interests: this.state.selectedInterests}});
   }
 
   _addInterest = (item) => {
@@ -60,11 +63,9 @@ export default class WhatYouLike extends Component {
   }
 
   _removeInterest = (item) => {
-    // Use Immutable sets so that state update is triggered.
     const newSelectedInterests = this.state.selectedInterests.delete(item.name);
     this.setState({selectedInterests: newSelectedInterests});
   }
-
 
   render() {
     return (

@@ -25,14 +25,15 @@ export default class SubmitTripRequest extends Component {
   submitTripRequest(name, phoneNumber) {
     this.setState({isLoading: true});
 
-    const location = this.props.navigation.getParam('location', '');
+    const curRequest = this.props.navigation.getParam('tripRequest', '');
+    const tripRequest = {name, phoneNumber, ...curRequest};
 
-    submitTripRequest(name, phoneNumber, location).then(response => {
+    submitTripRequest(tripRequest).then(response => {
       this.setState({isLoading: false});
       // TODO: Properly inform user of bad response.
       if (!response) return;
       this.props.navigation.navigate('Confirmation');
-    })
+    });
   }
 
   render() {
