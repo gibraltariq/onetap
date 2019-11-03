@@ -38,53 +38,57 @@ export default class SearchLocation extends Component {
 
   render() {
     return (
-        <View style={{
-          ...styles.container,
-          backgroundColor: this.someTextWritten() ? '#F2F2F2': THEME_PINK}}>
-            <View style={styles.top}>
-                <View style={styles.searchBar}>
-                    <TextInput style={styles.searchInput}
-                        autoFocus={true}
-                        keyboardType={'default'}
-                        onChangeText={(location) => this.setState({location})}
-                        placeholder={'Where to?'}
-                        selectionColor={THEME_PINK}
-                    />
-                </View>
-                <View style={styles.searchResults}>
-                </View>
+      <View style={{
+        ...styles.container,
+        backgroundColor: this.someTextWritten() ? '#F2F2F2': THEME_PINK}}>
+          <View style={styles.top}>
+            <View style={styles.searchBar}>
+              <TextInput style={styles.searchInput}
+                autoFocus={true}
+                keyboardType={'default'}
+                onChangeText={(location) => this.setState({location})}
+                placeholder={'Where to?'}
+                selectionColor={THEME_PINK}
+              />
             </View>
-            <Pacman isExcited={this.someTextWritten()}/>
-            <KeyboardAvoidingView behavior='padding'>
-              {<NextButton
-                  style={this.someTextWritten() ? {} : {opacity: 0}}
-                  awaitingText={'Next'}
-                  buttonText={'Next'}
-                  isAwaiting={!this.someTextWritten()}
-                  onPress={this.onNext}/>
-              }
-            </KeyboardAvoidingView>
-        </View>
+              <View style={styles.searchResults}>
+              </View>
+          </View>
+          <Pacman isExcited={this.someTextWritten()}/>
+          <KeyboardAvoidingView
+            style={this.someTextWritten() ? {} : styles.buttonNoTextWritten}
+            behavior='padding'>
+            {<NextButton
+              awaitingText={'Next'}
+              buttonText={'Next'}
+              isAwaiting={!this.someTextWritten()}
+              onPress={this.onNext}/>
+            }
+          </KeyboardAvoidingView>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: THEME_PINK,
-        flex: 1,
+      backgroundColor: THEME_PINK,
+      flex: 1,
+    },
+    buttonNoTextWritten: {
+      opacity: 0,
     },
     searchBar: {
-        backgroundColor: 'white',
-        paddingTop: hp(standardContainerPadding),
+      backgroundColor: 'white',
+      paddingTop: hp(standardContainerPadding),
     },
     searchInput: {
-        color: gray,
-        backgroundColor: 'white',
-        fontSize: hp(bodyPrimarySize),
-        padding: hp(bodySecondarySize * 0.9),
+      color: gray,
+      backgroundColor: 'white',
+      fontSize: hp(bodyPrimarySize),
+      padding: hp(bodySecondarySize * 0.9),
     },
     top: {
-        flex: 1,
+      flex: 1,
     },
 });
