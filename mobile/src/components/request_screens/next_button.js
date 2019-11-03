@@ -12,13 +12,15 @@ export default class NextButton extends Component {
 
   static propTypes  = {
     buttonText: PropTypes.string.isRequired,
+    disabledText: PropTypes.string,
+    isDisabled: PropTypes.bool.isRequired,
   }
 
   render() {
     const containerStyles = {
       ...this.props.style, // passed down styles
       ...styles.container,
-      ...(this.props.isAwaiting ?
+      ...(this.props.isDisabled ?
         styles.disabledButton :
         styles.enabledButton)
     };
@@ -26,10 +28,10 @@ export default class NextButton extends Component {
     return (
       <TouchableOpacity
         style={containerStyles}
-        disabled={this.props.isAwaiting}
+        disabled={this.props.isDisabled}
         onPress={this.props.onPress}>
         <Text style={styles.buttonText}>
-          {this.props.isAwaiting ? this.props.awaitingText : this.props.buttonText}
+          {this.props.isDisabled ? this.props.disabledText : this.props.buttonText}
         </Text>
       </TouchableOpacity>
     );

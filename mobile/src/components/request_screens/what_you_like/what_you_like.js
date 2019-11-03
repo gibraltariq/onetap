@@ -88,9 +88,9 @@ export default class WhatYouLike extends Component {
               />
         </View>
         <NextButton
-          awaitingText={'NEXT'}
+          disabledText={'NEXT'}
           buttonText={'NEXT'}
-          isAwaiting={this.state.selectedInterests.size < MIN_INTERESTS}
+          isDisabled={this.state.selectedInterests.size < MIN_INTERESTS}
           onPress={this._onNext}
         />
       </SafeAreaView>

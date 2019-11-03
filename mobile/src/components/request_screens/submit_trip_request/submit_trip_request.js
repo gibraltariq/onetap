@@ -1,10 +1,11 @@
 import {KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {Component} from 'react';
-import {darkGray, gray, standardContainerPadding, textLarge, textMedium, textTitle} from '../../common';
+import {THEME_WHITE, darkGray, gray, standardContainerPadding, textLarge, textMedium, textTitle} from '../../common';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 import FormField from './form_field';
 import { Header } from 'react-navigation';
+import NextButton from '../next_button';
 import {submitTripRequest} from '../../../networking/api';
 
 export default class SubmitTripRequest extends Component {
@@ -22,7 +23,7 @@ export default class SubmitTripRequest extends Component {
     headerTintColor: 'black',
   }
 
-  submitTripRequest(name, phoneNumber) {
+  _submitTripRequest(name, phoneNumber) {
     this.setState({isLoading: true});
 
     const curRequest = this.props.navigation.getParam('tripRequest', '');
@@ -34,6 +35,10 @@ export default class SubmitTripRequest extends Component {
       if (!response) return;
       this.props.navigation.navigate('Confirmation');
     });
+  }
+
+  _isTextWritten = () => {
+    return this.state.name.length && this.state.phoneNumber.length;
   }
 
   render() {
@@ -60,15 +65,12 @@ export default class SubmitTripRequest extends Component {
               placeholder='Salman Khan'/>
           </View>
         </View>
-        <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={Header.HEIGHT + 20}>
-          <TouchableOpacity
-            style={this.state.isLoading ?
-              {...styles.disabledButton, ...styles.button} :
-              {...styles.enabledButton, ...styles.button}}
-            disabled={this.state.isLoading}
-            onPress={() => this.submitTripRequest(this.state.name, this.state.phoneNumber)}>
-            <Text style={styles.buttonText}>{this.state.isLoading ? '...sending' : 'submit'}</Text>
-          </TouchableOpacity>
+        <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={Header.HEIGHT + 40}>
+          <NextButton
+              disabledText={this._isTextWritten() ? 'Sending...' : 'Submit'}
+              buttonText={'Submit'}
+              isDisabled={this.state.isLoading || !this._isTextWritten()}
+              onPress={() => this._submitTripRequest(this.state.name, this.state.phoneNumber)}/>
         </KeyboardAvoidingView>
       </View>
     );
@@ -91,9 +93,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   content: {
-    backgroundColor: '#FAFAFA',
+    backgroundColor: THEME_WHITE,
     flex: 1,
-    paddingVertical: hp(3),
+    paddingVertical: hp(1),
     paddingHorizontal: wp(standardContainerPadding),
   },
   disabledButton: {
@@ -104,11 +106,8 @@ const styles = StyleSheet.create({
   },
   explanation: {
     color: gray,
-    fontSize: textLarge,
+    fontSize: textMedium,
     marginTop: hp(1),
-  },
-  form: {
-    // marginTop: hp(1),
   },
   title: {
     color: darkGray,

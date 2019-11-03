@@ -59,9 +59,9 @@ export default class SearchLocation extends Component {
             style={this.someTextWritten() ? {} : styles.buttonNoTextWritten}
             behavior='padding'>
             {<NextButton
-              awaitingText={'Next'}
+              disabledText={'Next'}
               buttonText={'Next'}
-              isAwaiting={!this.someTextWritten()}
+              isDisabled={!this.someTextWritten()}
               onPress={this.onNext}/>
             }
           </KeyboardAvoidingView>
